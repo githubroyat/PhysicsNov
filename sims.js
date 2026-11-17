@@ -422,6 +422,8 @@ function simHooke(api) {
   const recRow = h('div', 'sims-btns'); api.extra.append(recRow); recRow.append(recBtn, clrBtn);
   const tblWrap = h('div', 'sims-tblwrap'); api.extra.append(tblWrap);
   const tblNote = h('p', 'sims-note'); api.extra.append(tblNote);
+  // This sim has no motion over time, so a Play/Pause button would do nothing: hide it (Reset stays).
+  const playB = api.bar.querySelector('#' + api.pre + 'play'); if (playB) playB.hidden = true;
 
   function record() {
     if (S.m <= 0 || S.rows.length >= 6) return;
@@ -445,7 +447,7 @@ function simHooke(api) {
     recBtn.disabled = S.m <= 0 || S.rows.length >= 6;
   }
   function sync() {
-    if (!api.running()) S.xd = Xn();
+    S.xd = Xn(); // the spring jumps straight to its new length; nothing in this sim runs on its own
     warn.hidden = !over();
     recBtn.disabled = S.m <= 0 || S.rows.length >= 6;
     api.draw();
