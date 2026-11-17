@@ -1,0 +1,1138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Oscillations &amp; Waves Trainer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=Young+Serif&display=swap">
+<style>
+/* Layout: fixed side menu on desktop (drawer on phones); each page opens with an orange band whose lower edge is a sine wave, then "In short" cards, content blocks with formula boxes, sims and a Check-yourself block, then prev/next links. */
+:root{
+  --paper:#F4F6F9; --card:#FFFFFF; --sunk:#E8ECF2; --ink:#17202B; --ink-2:#4A5666; --ink-3:#5F6B7A; --line:#D5DCE5;
+  --accent:#B5500B; --accent-ink:#FFFFFF; --accent-soft:#FCE8D6; --accent-bright:#F08A24;
+  --mag:#A3155F; --mag-soft:#F8E1EC; --blue:#1F78C8; --blue-soft:#DCEBF8;
+  --ok:#1D7A45; --ok-soft:#DCF0E3; --warn:#9A5D08; --warn-soft:#FAEACF; --stop:#B3261E; --stop-soft:#F8DDDA;
+  --scrim:rgba(14,21,27,.5); --shadow:0 1px 2px rgba(23,32,43,.06),0 6px 20px rgba(23,32,43,.07);
+  --f-display:"Young Serif",Georgia,"Times New Roman",serif;
+  --f-body:"Atkinson Hyperlegible","Segoe UI",system-ui,-apple-system,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Consolas,"Courier New",monospace;
+  --r:12px; --gut:40px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0F141B; --card:#171E28; --sunk:#1F2833; --ink:#E7ECF2; --ink-2:#AAB6C3; --ink-3:#8794A3; --line:#2C3744;
+    --accent:#F59A4A; --accent-ink:#1A0D02; --accent-soft:#3A2414; --accent-bright:#F7A35C;
+    --mag:#E77BB0; --mag-soft:#3A1A2B; --blue:#6BB2F0; --blue-soft:#16293B;
+    --ok:#5BCB8A; --ok-soft:#163224; --warn:#EDB45A; --warn-soft:#382A13; --stop:#F2796E; --stop-soft:#3D1D1A;
+    --scrim:rgba(0,0,0,.62); --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 20px rgba(0,0,0,.3);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0F141B; --card:#171E28; --sunk:#1F2833; --ink:#E7ECF2; --ink-2:#AAB6C3; --ink-3:#8794A3; --line:#2C3744;
+  --accent:#F59A4A; --accent-ink:#1A0D02; --accent-soft:#3A2414; --accent-bright:#F7A35C;
+  --mag:#E77BB0; --mag-soft:#3A1A2B; --blue:#6BB2F0; --blue-soft:#16293B;
+  --ok:#5BCB8A; --ok-soft:#163224; --warn:#EDB45A; --warn-soft:#382A13; --stop:#F2796E; --stop-soft:#3D1D1A;
+  --scrim:rgba(0,0,0,.62); --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 20px rgba(0,0,0,.3);
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 16px)}
+html.big{font-size:112.5%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:1.0625rem;line-height:1.6;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--paper)}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+a{color:var(--ink);text-decoration-color:var(--accent);text-underline-offset:3px}
+a:hover{color:var(--accent)}
+:focus-visible{outline:2.5px solid var(--accent);outline-offset:2px;border-radius:4px}
+h1,h2,h3,h4{font-family:var(--f-display);font-weight:400;line-height:1.15;margin:0;text-wrap:balance}
+h1{font-size:clamp(2.1rem,4.6vw,3.3rem);letter-spacing:-.01em}
+h2{font-size:clamp(1.5rem,2.8vw,2.05rem)}
+h3{font-size:1.28rem}
+h4{font-size:1.08rem}
+p{margin:0}
+ul,ol{margin:0}
+[hidden]{display:none!important}
+.eyebrow{font-family:var(--f-mono);font-size:.76rem;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);font-weight:500}
+.lead{font-size:1.14rem;color:var(--ink-2);max-width:64ch}
+.muted{color:var(--ink-2)}
+.small{font-size:.9rem}
+.mono{font-family:var(--f-mono)}
+.num{font-variant-numeric:tabular-nums}
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:12px;top:-80px;z-index:70;background:var(--ink);color:var(--paper);padding:10px 16px;border-radius:10px;font-weight:700;text-decoration:none}
+.skip:focus{top:calc(env(safe-area-inset-top,0px) + 12px);color:var(--paper)}
+
+/* Shell: side menu on desktop, drawer on phones */
+.shell{display:grid;grid-template-columns:280px minmax(0,1fr);min-height:100vh}
+.col{min-width:0;display:flex;flex-direction:column}
+.side{position:sticky;top:env(safe-area-inset-top,0px);align-self:start;height:calc(100vh - env(safe-area-inset-top,0px));overflow-y:auto;display:flex;flex-direction:column;gap:18px;padding-block:20px 18px;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:18px;background:var(--card);border-right:1px solid var(--line);scrollbar-width:thin}
+.side-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.brand{display:flex;align-items:center;gap:12px;font-family:var(--f-display);font-size:1.12rem;line-height:1.1;text-decoration:none;color:var(--ink)}
+.brand:hover{color:var(--ink)}
+.brand svg{width:38px;height:38px;flex:none}
+.brand small{display:block;margin-top:3px;font-family:var(--f-mono);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.close-btn{display:none}
+.pnav{display:grid;gap:12px}
+.pnav ul{list-style:none;margin:0;padding:0;display:grid;gap:1px}
+.ngrp{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin:0 0 3px 10px}
+.pnav a{display:grid;grid-template-columns:22px minmax(0,1fr);gap:12px;align-items:center;min-height:40px;padding:6px 10px;border-radius:10px;color:var(--ink-2);text-decoration:none;font-size:.95rem;line-height:1.25}
+.pnav a svg,.tb-ico svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.pnav a:hover{background:var(--sunk);color:var(--ink)}
+.pnav a[aria-current="page"]{background:var(--accent-soft);color:var(--ink);font-weight:700}
+.pnav a[aria-current="page"] svg{color:var(--accent)}
+.side-foot{margin-top:auto;display:grid;gap:12px;padding-top:6px}
+.due{display:grid;gap:3px;padding:12px 14px;border-radius:12px;background:var(--warn-soft)}
+.due .k{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--warn)}
+.due b{font-family:var(--f-display);font-weight:400;font-size:1.1rem;line-height:1.2}
+.due a{font-size:.86rem;font-weight:700}
+.ctl{display:grid;gap:6px}
+.ctl .lab{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.pick{display:flex;gap:3px;padding:3px;background:var(--sunk);border-radius:999px}
+.pick button{flex:1;border:0;background:transparent;font:inherit;font-size:.9rem;min-height:36px;padding:5px 12px;border-radius:999px;color:var(--ink-2);cursor:pointer;white-space:nowrap}
+.pick button:hover{color:var(--ink)}
+.pick button[aria-pressed="true"]{background:var(--card);color:var(--ink);font-weight:700;box-shadow:var(--shadow)}
+.topbar,.scrim{display:none}
+@media (max-width:999px){
+  :root{--gut:16px}
+  html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 76px)}
+  .shell{display:block}
+  .topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;display:flex;align-items:center;gap:12px;min-height:60px;padding-block:8px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .menu-btn{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:8px 14px 8px 10px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-weight:700;font-size:.95rem;cursor:pointer}
+  .menu-btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+  .tb-page{display:flex;align-items:center;gap:8px;min-width:0;font-family:var(--f-display);font-size:1.05rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .tb-ico{display:inline-grid;color:var(--accent);flex:none}
+  .side{position:fixed;z-index:60;top:0;left:0;bottom:0;height:auto;width:min(330px,88vw);padding-top:calc(env(safe-area-inset-top,0px) + 16px);padding-bottom:calc(env(safe-area-inset-bottom,0px) + 18px);transform:translateX(-104%);visibility:hidden;transition:transform .25s ease,visibility 0s linear .25s;box-shadow:var(--shadow)}
+  .side.open{transform:none;visibility:visible;transition:transform .25s ease}
+  .close-btn{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:50%;border:1.5px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+  .close-btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round}
+  .scrim{display:block;position:fixed;inset:0;z-index:55;background:var(--scrim);opacity:0;visibility:hidden;transition:opacity .2s ease,visibility 0s linear .2s}
+  .scrim.open{opacity:1;visibility:visible;transition:opacity .2s ease}
+}
+
+/* Page band with sine-wave lower edge */
+.disc{background:var(--warn-soft);border-bottom:1px solid color-mix(in srgb,var(--warn) 25%,transparent)}
+.disc p{max-width:1120px;margin:0 auto;display:flex;gap:10px;align-items:flex-start;padding-block:9px;padding-left:max(var(--gut),env(safe-area-inset-left,0px));padding-right:max(var(--gut),env(safe-area-inset-right,0px));font-size:.88rem;line-height:1.45}
+.disc b{color:var(--warn)}
+.phead{position:relative;background:var(--accent-soft);overflow:hidden}
+.phead-in{max-width:1120px;margin:0 auto;display:grid;gap:12px;padding-block:40px 64px;padding-left:max(var(--gut),env(safe-area-inset-left,0px));padding-right:max(var(--gut),env(safe-area-inset-right,0px))}
+.phead h1:focus{outline:none}
+.wavedge{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:34px;display:block}
+.wavedge path{fill:var(--paper)}
+@media (max-width:700px){.phead-in{padding-block:24px 50px}}
+.pbody{max-width:1120px;width:100%;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr);gap:52px;padding-block:18px 36px;padding-left:max(var(--gut),env(safe-area-inset-left,0px));padding-right:max(var(--gut),env(safe-area-inset-right,0px))}
+.blk{display:grid;grid-template-columns:minmax(0,1fr);gap:14px;min-width:0;max-width:820px}
+.blk.wide{max-width:none}
+.blk h2{margin-bottom:2px}
+.blk h3{margin-top:10px}
+.blk p,.blk li{max-width:70ch}
+.blk ul,.blk ol{padding-left:1.25em;display:grid;gap:6px}
+.inshort{display:grid;gap:12px}
+.inshort > h2{font-family:var(--f-mono);font-size:.76rem;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);font-weight:500}
+.inshort ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.inshort li{padding:16px 18px;background:var(--card);border:1px solid var(--line);border-radius:14px;font-size:.96rem;color:var(--ink-2);line-height:1.5}
+.inshort li b{display:block;font-family:var(--f-mono);font-size:.74rem;letter-spacing:.1em;color:var(--accent);margin-bottom:4px;font-weight:500}
+@media (max-width:860px){.inshort ul{grid-template-columns:1fr}}
+.pn{max-width:1120px;width:100%;margin:0 auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding-block:8px 44px;padding-left:max(var(--gut),env(safe-area-inset-left,0px));padding-right:max(var(--gut),env(safe-area-inset-right,0px))}
+.pn a{display:grid;gap:2px;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:var(--card);text-decoration:none;color:var(--ink);min-width:0}
+.pn a:hover{border-color:var(--accent);color:var(--ink)}
+.pn small{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.pn b{font-family:var(--f-display);font-weight:400;font-size:1.15rem;line-height:1.25}
+.pn .prev small::before{content:"\2190  "}
+.pn .next{grid-column:2;text-align:right}
+.pn .next small::after{content:"  \2192"}
+.foot{margin-top:auto;border-top:1px solid var(--line);font-size:.86rem;color:var(--ink-3);padding-block:20px 32px;padding-left:max(var(--gut),env(safe-area-inset-left,0px));padding-right:max(var(--gut),env(safe-area-inset-right,0px))}
+.foot p{max-width:1040px;margin:0 auto}
+
+/* Buttons, tags */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 18px;min-height:44px;border-radius:999px;font:inherit;font-weight:700;font-size:.97rem;text-decoration:none;border:1.5px solid var(--ink);color:var(--ink);background:transparent;cursor:pointer}
+.btn:hover{background:var(--sunk);color:var(--ink)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.primary:hover{filter:brightness(1.07);color:var(--accent-ink)}
+.btn.sm{min-height:38px;padding:6px 14px;font-size:.9rem}
+.btn[disabled]{opacity:.5;cursor:default}
+.cta{display:flex;flex-wrap:wrap;gap:10px}
+.tag{display:inline-flex;align-items:center;gap:6px;padding:2px 10px;border-radius:999px;font-size:.8rem;font-weight:700;font-family:var(--f-mono)}
+.tag.ok{background:var(--ok-soft);color:var(--ok)} .tag.warn{background:var(--warn-soft);color:var(--warn)} .tag.stop{background:var(--stop-soft);color:var(--stop)} .tag.info{background:var(--sunk);color:var(--ink-2)}
+
+/* Content atoms: formulas, key terms, callouts, tables */
+.f{font-family:var(--f-mono);font-size:.92em;background:var(--sunk);padding:1px 6px;border-radius:5px;white-space:nowrap}
+.formula{font-family:var(--f-mono);font-size:clamp(1.1rem,2.4vw,1.45rem);line-height:1.9;background:var(--sunk);border-left:4px solid var(--accent-bright);border-radius:0 var(--r) var(--r) 0;padding:10px 18px;display:block;overflow-x:auto}
+.formula>span:not(.frac):not(.rt){display:inline-block;margin-left:1.6em}
+.formula small{display:block;font-family:var(--f-body);font-size:.9rem;line-height:1.4;color:var(--ink-2);margin-top:2px}
+.frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1.2;margin:0 .15em}
+.frac>span:first-child{border-bottom:1.5px solid currentColor;padding:0 .25em}
+.frac>span:last-child{padding:0 .25em}
+.rt{white-space:nowrap}
+.rt .ov{border-top:1.5px solid currentColor;padding:0 .2em;margin-left:.05em;display:inline-block}
+.term{color:var(--mag);font-weight:700}
+.def{background:var(--mag-soft);border-radius:var(--r);padding:12px 16px;border-left:4px solid var(--mag)}
+.def .term{font-family:var(--f-display);font-weight:400}
+.note{background:var(--blue-soft);border-radius:var(--r);padding:12px 16px;border-left:4px solid var(--blue)}
+.check{background:var(--warn-soft);border-radius:var(--r);padding:12px 16px;border-left:4px solid var(--warn)}
+.check h4{font-family:var(--f-mono);font-size:.76rem;letter-spacing:.09em;text-transform:uppercase;color:var(--warn);font-weight:500;margin-bottom:4px}
+.check s,.bad{color:var(--stop)}
+.extra{border:1.5px dashed var(--ink-3);border-radius:var(--r);padding:12px 16px}
+.extra h4{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:4px}
+.good{color:var(--ok);font-weight:700}
+.tw{overflow-x:auto;max-width:100%;border:1px solid var(--line);border-radius:var(--r);background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:.95rem}
+th,td{padding:8px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3);font-weight:500;white-space:nowrap;background:var(--sunk)}
+tr:last-child td{border-bottom:0}
+td.m,th.m{font-family:var(--f-mono);white-space:nowrap}
+td s{color:var(--stop)}
+.ex{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:grid;gap:10px}
+.ex > h4{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);font-weight:500}
+.gfr{display:grid;grid-template-columns:90px minmax(0,1fr);gap:6px 12px;align-items:baseline}
+.gfr dt{font-family:var(--f-mono);font-size:.74rem;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-3)}
+.gfr dd{margin:0;font-family:var(--f-mono);font-size:.95rem;overflow-x:auto}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (max-width:760px){.two{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:grid;gap:8px;align-content:start}
+.card h3,.card h4{margin:0}
+.card ul{padding-left:1.2em;margin:0;display:grid;gap:4px}
+.figbox{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px;display:grid;gap:6px}
+.figbox figcaption,.figcap{font-size:.88rem;color:var(--ink-2);padding:0 6px 4px}
+.grid-paper{background-color:var(--card);background-image:linear-gradient(color-mix(in srgb,var(--line) 70%,transparent) 1px,transparent 1px),linear-gradient(90deg,color-mix(in srgb,var(--line) 70%,transparent) 1px,transparent 1px);background-size:20px 20px}
+svg.fig{width:100%;height:auto;display:block;max-width:560px;margin:0 auto}
+svg.fig.w{max-width:680px}
+@media (max-width:560px){.figbox{grid-template-columns:minmax(0,1fr);overflow-x:auto}svg.fig.w{min-width:470px}}
+.fig .gax{stroke:var(--ink-3);stroke-width:1.5;fill:none}
+.fig .ggrid{stroke:var(--line);stroke-width:1;fill:none}
+.fig .gt{font-family:var(--f-mono);font-size:11px;fill:var(--ink-3)}
+.fig .gtb{font-family:var(--f-mono);font-size:11.5px;fill:var(--ink);font-weight:500}
+.fig .gtm{font-family:var(--f-mono);font-size:11.5px;fill:var(--mag);font-weight:500}
+.fig .gtw{font-family:var(--f-mono);font-size:11px;fill:var(--stop)}
+.fig .gb{stroke:var(--blue);stroke-width:2.5;fill:none;stroke-linejoin:round;stroke-linecap:round}
+.fig .go{stroke:var(--accent-bright);stroke-width:2.5;fill:none;stroke-linejoin:round;stroke-linecap:round}
+.fig .gm{stroke:var(--mag);stroke-width:2;fill:none}
+.fig .gd{stroke:var(--ink-3);stroke-width:1.5;fill:none;stroke-dasharray:5 4}
+.fig .gdot{fill:var(--blue)}
+.fig .gdotm{fill:var(--mag)}
+.fig .gdoto{fill:var(--accent-bright)}
+.fig .gfill{fill:var(--card)}
+.fig .gstop{stroke:var(--stop);stroke-width:2.5;fill:none;stroke-linecap:round}
+.fig .gwall{stroke:var(--ink);stroke-width:4;fill:none;stroke-linecap:round}
+.fig .gring{fill:none;stroke:var(--ink);stroke-width:2.5}
+.sim{background-color:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px;min-height:120px;color:var(--ink-2);font-size:.95rem}
+.sim.ph{display:grid;place-items:center;text-align:center;padding:30px}
+.try{border:1.5px solid var(--accent-bright);border-radius:var(--r);padding:12px 16px 12px;background:var(--card)}
+.try h4{font-family:var(--f-mono);font-size:.76rem;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:4px}
+.try ol{padding-left:1.3em;display:grid;gap:5px;margin:0}
+.simwrap{display:grid;grid-template-columns:minmax(0,1fr);gap:12px;min-width:0}
+
+/* Home */
+.actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+@media (max-width:820px){.actions{grid-template-columns:1fr}}
+.action{display:grid;gap:4px;align-content:start;text-align:left;padding:18px 20px;border-radius:16px;border:1.5px solid var(--line);background:var(--card);font:inherit;color:var(--ink);text-decoration:none;cursor:pointer;min-height:104px}
+.action:hover{border-color:var(--accent);color:var(--ink)}
+.action b{font-family:var(--f-display);font-weight:400;font-size:1.35rem;line-height:1.2}
+.action span{font-size:.92rem;color:var(--ink-2)}
+.action.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.action.primary span{color:var(--accent-ink);opacity:.9}
+.action.primary:hover{color:var(--accent-ink);filter:brightness(1.07)}
+input[type=date],input[type=text],select,textarea{font:inherit;font-size:1rem;color:var(--ink);background:var(--sunk);border:1.5px solid var(--line);border-radius:10px;padding:8px 12px;max-width:100%}
+textarea{width:100%;min-height:96px;resize:vertical}
+.bars{display:grid;gap:10px}
+.barrow{display:grid;grid-template-columns:minmax(0,200px) minmax(0,1fr) 92px;gap:12px;align-items:center;font-size:.95rem}
+.barrow a{text-decoration:none}
+.track{height:12px;border-radius:99px;background:var(--sunk);overflow:hidden}
+.track i{display:block;height:100%;border-radius:99px;background:var(--blue)}
+.track i.lo{background:var(--stop)} .track i.mid{background:var(--warn)} .track i.hi{background:var(--ok)}
+.barrow .pc{font-family:var(--f-mono);font-size:.82rem;color:var(--ink-2);text-align:right}
+@media (max-width:620px){.barrow{grid-template-columns:minmax(0,1fr) 80px}.barrow .track{grid-column:1/-1;order:3}}
+
+/* Question component */
+.q{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;display:grid;gap:14px;min-width:0}
+.q-meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.q-prompt{font-size:1.06rem;line-height:1.55}
+.q-prompt p+p{margin-top:8px}
+.qopts{display:grid;gap:8px}
+.qopt{display:grid;grid-template-columns:24px minmax(0,1fr);gap:12px;align-items:start;text-align:left;font:inherit;color:var(--ink);background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:10px 14px;min-height:46px;cursor:pointer}
+.qopt:hover{border-color:var(--ink-3)}
+.qopt .mk{width:20px;height:20px;border-radius:50%;border:2px solid var(--ink-3);margin-top:2px;display:grid;place-items:center}
+.qopt.sq .mk{border-radius:5px}
+.qopt[aria-checked="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.qopt[aria-checked="true"] .mk{border-color:var(--accent);background:var(--accent)}
+.qopt[aria-checked="true"] .mk::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent-ink)}
+.qopt.sq[aria-checked="true"] .mk::after{border-radius:2px}
+.qopt.right{border-color:var(--ok);background:var(--ok-soft)}
+.qopt.wrong{border-color:var(--stop);background:var(--stop-soft)}
+.qopt.right .mk{border-color:var(--ok)} .qopt.wrong .mk{border-color:var(--stop)}
+.qopts.tfo{grid-template-columns:repeat(2,minmax(0,1fr))}
+.qopt[disabled]{cursor:default}
+.qnum{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.qnum input{width:11em;font-family:var(--f-mono)}
+.qnum .unit{font-family:var(--f-mono);color:var(--ink-2)}
+.q-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.fb{display:grid;gap:10px;border-radius:12px;padding:12px 16px}
+.fb.ok{background:var(--ok-soft);border-left:4px solid var(--ok)}
+.fb.bad{background:var(--stop-soft);border-left:4px solid var(--stop)}
+.fb.half{background:var(--warn-soft);border-left:4px solid var(--warn)}
+.fb.neutral{background:var(--sunk);border-left:4px solid var(--ink-3)}
+.fb .verdict{font-weight:700;font-size:1.02rem}
+.fb.ok .verdict{color:var(--ok)} .fb.bad .verdict{color:var(--stop)} .fb.half .verdict{color:var(--warn)}
+.fb .hintline{color:var(--warn);font-weight:700}
+.fb ol.steps{padding-left:1.3em;margin:0;display:grid;gap:3px}
+.fb .lab{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.kp{display:grid;gap:6px;margin:0;padding:0;list-style:none}
+.kp label{display:flex;gap:10px;align-items:flex-start;cursor:pointer}
+.kp input{width:20px;height:20px;accent-color:var(--accent);margin-top:3px;flex:none}
+.selfmark{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.qhost{display:grid;gap:16px}
+.empty{padding:22px;border:1.5px dashed var(--line);border-radius:14px;color:var(--ink-2);text-align:center}
+
+/* Practice, cards, mock */
+.panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;display:grid;gap:18px;min-width:0}
+fieldset{border:0;margin:0;padding:0;min-width:0;display:grid;gap:10px}
+legend{font-family:var(--f-display);font-size:1.12rem;padding:0;margin-bottom:8px}
+.chk{display:flex;align-items:center;gap:12px;padding:9px 12px;border:1.5px solid var(--line);border-radius:10px;cursor:pointer;background:var(--card);min-height:44px}
+.chk:hover{border-color:var(--ink-3)}
+.chk input{width:20px;height:20px;accent-color:var(--accent);flex:none;margin:0}
+.chk:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+.chk:focus-within{outline:2.5px solid var(--accent);outline-offset:2px}
+.chkgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px}
+.seg{display:flex;flex-wrap:wrap;gap:8px}
+.sessbar{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;padding:10px 16px;border-radius:12px;background:var(--sunk);font-family:var(--f-mono);font-size:.88rem}
+.sessbar .sp{flex:1}
+.sum{display:grid;gap:18px}
+.sumscore{font-family:var(--f-display);font-size:clamp(2.4rem,6vw,3.6rem);line-height:1}
+.missed{list-style:none;padding:0!important;margin:0;display:grid;gap:8px}
+.missed li{padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--card);max-width:none!important}
+.leit{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.leit div{background:var(--sunk);border-radius:10px;padding:8px 10px;text-align:center;font-family:var(--f-mono);font-size:.8rem;color:var(--ink-2)}
+.leit b{display:block;font-family:var(--f-display);font-weight:400;font-size:1.4rem;color:var(--ink)}
+.flash{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px 24px;min-height:200px;display:grid;gap:14px;align-content:center;text-align:center;font-size:1.2rem}
+.flash .side-l{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.flash.back{background:var(--mag-soft);border-color:var(--mag)}
+.timer{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;position:sticky;top:calc(env(safe-area-inset-top,0px) + 62px);z-index:20;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:8px 14px;font-family:var(--f-mono)}
+@media (min-width:1000px){.timer{top:8px}}
+.timer .clock{font-size:1.3rem;font-weight:500}
+.timer .clock.over{color:var(--stop)}
+.timer .sp{flex:1}
+.mq{display:grid;gap:8px}
+.mq-n{font-family:var(--f-mono);font-size:.8rem;color:var(--ink-3)}
+.rev{border-left:5px solid var(--line)}
+.rev.ok{border-left-color:var(--ok)} .rev.bad{border-left-color:var(--stop)} .rev.half{border-left-color:var(--warn)}
+.hist{list-style:none;padding:0!important;display:grid;gap:6px}
+.hist li{display:flex;justify-content:space-between;gap:12px;padding:8px 14px;background:var(--card);border:1px solid var(--line);border-radius:10px;font-family:var(--f-mono);font-size:.9rem;max-width:none!important}
+.confirm{background:var(--warn-soft);border-left:4px solid var(--warn);border-radius:12px;padding:12px 16px;display:grid;gap:10px}
+.trap-list{padding-left:0!important;list-style:none;display:grid;gap:8px}
+.trap-list li{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px;max-width:none!important}
+.trap-list li b{color:var(--warn)}
+.fix{display:grid;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px}
+.fix .row{display:grid;grid-template-columns:110px minmax(0,1fr);gap:4px 14px;align-items:baseline}
+.fix .row>span:first-child{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase}
+.fix .said>span:first-child{color:var(--stop)} .fix .right>span:first-child{color:var(--ok)} .fix .why>span:first-child{color:var(--ink-3)}
+.fix .said>span:last-child{color:var(--ink-2)}
+@media (max-width:560px){.fix .row{grid-template-columns:1fr}}
+.fixes{display:grid;gap:12px}
+</style>
+</head>
+<body>
+<a class="skip" href="#main" id="skip">Skip to content</a>
+<div class="shell">
+
+<aside class="side" id="side" aria-label="Site menu">
+  <div class="side-top">
+    <a class="brand" href="#home">
+      <svg viewBox="0 0 38 38" aria-hidden="true"><rect x="1" y="1" width="36" height="36" rx="9" style="fill:var(--accent)"/><path d="M5 19 C 9 7, 14 7, 19 19 S 29 31, 33 19" fill="none" style="stroke:var(--accent-ink)" stroke-width="3" stroke-linecap="round"/></svg>
+      <span>Oscillations &amp; Waves<small>Test trainer</small></span>
+    </a>
+    <button class="close-btn" type="button" id="menuClose" aria-label="Close menu"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 5l10 10M15 5L5 15"/></svg></button>
+  </div>
+  <nav class="pnav" id="pnav" aria-label="Pages"></nav>
+  <div class="side-foot">
+    <div class="due" id="sideDue"></div>
+    <div class="ctl"><span class="lab" id="txtLab">Text size</span><div class="pick" id="txtPick" role="group" aria-labelledby="txtLab"><button type="button" data-size="0" aria-pressed="true">Normal</button><button type="button" data-size="1" aria-pressed="false">Large</button></div></div>
+  </div>
+</aside>
+<div class="scrim" id="scrim"></div>
+
+<div class="col">
+<div class="topbar" id="topbar">
+  <button class="menu-btn" type="button" id="menuBtn" aria-expanded="false" aria-controls="side"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5.5h14M3 10h14M3 14.5h14"/></svg>Menu</button>
+  <span class="tb-page" id="tbPage">Start here</span>
+</div>
+
+<main id="main">
+
+<!-- ================= HOME ================= -->
+<section class="view" id="view-home" data-view="home" aria-labelledby="h-home">
+  <header class="phead">
+    <div class="phead-in">
+      <p class="eyebrow">Test preparation · Start here</p>
+      <h1 id="h-home" tabindex="-1">Oscillations &amp; Waves</h1>
+      <p class="lead">Everything from your notes, 1 Oct – Nov, turned into practice.</p>
+    </div>
+  </header>
+  <div class="disc" role="note"><p><span><b>Built from your class notes.</b> If your teacher said something different, follow your teacher.</span></p></div>
+  <div class="pbody">
+    <div class="actions">
+      <button class="action primary" type="button" id="goQuick"><b>Quick 10</b><span>Ten mixed questions from all topics. About 10 minutes.</span></button>
+      <a class="action" href="#cards" id="goCards"><b>Flashcards</b><span id="cardsDueTxt">Spaced repetition.</span></a>
+      <a class="action" href="#mock"><b>Mock test</b><span>16 fresh questions, 30 minutes, like the real thing.</span></a>
+    </div>
+
+    <section class="blk wide" aria-labelledby="h-prog">
+      <h2 id="h-prog">Progress by topic</h2>
+      <p class="muted">Mastery is the average of your last 10 answers on a topic. A topic needs at least 3 answers before it shows a value.</p>
+      <div class="bars" id="progress"></div>
+    </section>
+
+    <section class="blk" aria-labelledby="h-how">
+      <h2 id="h-how">How to study with this site</h2>
+      <ul>
+        <li><b>Test yourself before re-reading.</b> Try the Check yourself questions first, then read the page.</li>
+        <li><b>Read every explanation</b>, also when you were right.</li>
+        <li><b>Come back to wrong answers.</b> Practice brings them back; Retry missed after a session.</li>
+        <li><b>Use the flashcards a little every day</b>, and do the mock test under time.</li>
+      </ul>
+    </section>
+  </div>
+  <nav class="pn" data-pn aria-label="Previous and next page"></nav>
+</section>
+
+
+<!-- ================= HOOKE ================= -->
+<section class="view" id="view-hooke" data-view="hooke" aria-labelledby="h-hooke" hidden>
+  <header class="phead"><div class="phead-in">
+    <p class="eyebrow">Topic 1 of 6 · your notes, 1–2 Oct</p>
+    <h1 id="h-hooke" tabindex="-1">Hooke's law &amp; the spring constant</h1>
+  </div></header>
+  <div class="pbody">
+    <div class="inshort"><h2>In short</h2><ul>
+      <li><b>WHAT</b>A spring pulls back with a force that grows in proportion to how far you stretch or squash it: <span class="f">F = −k·x</span>.</li>
+      <li><b>HOW</b>k = F / x, in N/m. Read k as the slope of an F–x graph. Convert cm to m before you calculate.</li>
+      <li><b>WHY</b>The minus sign says the spring force points opposite to the displacement: it always pulls back towards the rest position.</li>
+    </ul></div>
+
+    <section class="blk" aria-labelledby="hk1">
+      <h2 id="hk1">Hooke's law</h2>
+      <div class="formula">F = −k·x<small>F = force of the spring (N) · x = how far the spring is stretched or compressed from its original length (m) · k = spring constant (N/m)</small></div>
+      <p>The <span class="term">minus sign</span> shows the <b>direction</b>: the spring force always points opposite to the displacement. It is a <span class="term">restoring force</span>, pulling back toward the rest position. Stretch the spring down, the force points up.</p>
+      <p>When you only want the <b>size</b> of the force, drop the minus sign:</p>
+      <div class="formula">F = k·x <span>k = <span class="frac"><span>F</span><span>x</span></span></span> <span>x = <span class="frac"><span>F</span><span>k</span></span></span></div>
+      <h3>Unit of k</h3>
+      <p>k is measured in <span class="f">N/m</span>. Because 1 N = 1 kg·m/s², we get <span class="f">1 N/m = 1 kg/s²</span>. Your notes wrote kg/s² and that is correct.</p>
+      <h3>What does k mean?</h3>
+      <p>k is the force you need <b>per metre</b> of stretch. A <span class="term">big k</span> is a <b>stiff</b> spring (hard to stretch). A <span class="term">small k</span> is a <b>soft</b> spring.</p>
+    </section>
+
+    <section class="blk" aria-labelledby="hk2">
+      <h2 id="hk2">The elastic region</h2>
+      <div class="def"><span class="term">Elastic region</span> (Hooke's law region): the range in which force and extension are proportional and the spring returns to its original length when released. The end of this range is the <span class="term">elastic limit</span>.</div>
+      <figure class="figbox" style="margin:0">
+        <svg class="fig" viewBox="0 0 360 230" role="img" aria-labelledby="fx1t"><title id="fx1t">Sketch of force against extension for a spring</title>
+          <rect x="40" y="20" width="300" height="160" class="gfill" opacity="0"/>
+          <path class="gax" d="M40 190 V16 M40 190 H340"/>
+          <path class="gax" d="M34 24 L40 14 L46 24 M330 184 L342 190 L330 196"/>
+          <text class="gtb" x="46" y="18">F</text><text class="gtb" x="334" y="210">x</text>
+          <path class="gb" d="M40 190 L170 80"/>
+          <path class="go" d="M170 80 C 195 58, 235 46, 268 48"/>
+          <circle class="gdotm" cx="170" cy="80" r="5"/>
+          <path class="gstop" d="M262 40 l12 16 M274 40 l-12 16"/>
+          <text class="gtm" x="52" y="40">elastic region</text>
+          <text class="gt" x="52" y="54">straight line: F = k·x</text>
+          <text class="gtm" x="180" y="102">elastic limit</text>
+          <text class="gt" x="188" y="150">beyond it: line bends,</text>
+          <text class="gt" x="188" y="164">spring stays deformed</text>
+          <text class="gtw" x="258" y="34" text-anchor="middle">breaks</text>
+        </svg>
+        <figcaption>Straight line through the origin = Hooke's law holds. After the elastic limit the line bends, the spring is permanently deformed and finally it breaks. Hooke's law does <b>not</b> apply outside the elastic region.</figcaption>
+      </figure>
+    </section>
+
+    <section class="blk" aria-labelledby="hk3">
+      <h2 id="hk3">Reading k from an F–x graph</h2>
+      <p>On an F–x graph the straight line has slope <span class="f">k = F / x</span>. A <b>steeper</b> line means a bigger k, so a <b>stiffer</b> spring.</p>
+      <figure class="figbox" style="margin:0">
+        <svg class="fig w" viewBox="0 0 360 240" role="img" aria-labelledby="fx2t"><title id="fx2t">Two springs: A has k = 200 N/m, B has k = 50 N/m</title>
+          <path class="ggrid" d="M106 20V200 M162 20V200 M218 20V200 M274 20V200 M330 20V200 M50 164H330 M50 128H330 M50 92H330 M50 56H330 M50 20H330"/>
+          <path class="gax" d="M50 205V14 M45 200H340"/>
+          <text class="gt" x="106" y="217" text-anchor="middle">0.01</text><text class="gt" x="162" y="217" text-anchor="middle">0.02</text><text class="gt" x="218" y="217" text-anchor="middle">0.03</text><text class="gt" x="274" y="217" text-anchor="middle">0.04</text><text class="gt" x="330" y="217" text-anchor="middle">0.05</text>
+          <text class="gt" x="44" y="168" text-anchor="end">1</text><text class="gt" x="44" y="132" text-anchor="end">2</text><text class="gt" x="44" y="96" text-anchor="end">3</text><text class="gt" x="44" y="60" text-anchor="end">4</text><text class="gt" x="44" y="24" text-anchor="end">5</text>
+          <text class="gtb" x="340" y="234" text-anchor="end">x (m)</text><text class="gtb" x="8" y="12">F (N)</text>
+          <path class="gb" d="M50 200 L190 20"/>
+          <path class="go" d="M50 200 L330 110"/>
+          <path class="gd" d="M162 200 V56 H50 M274 200 V128 H50"/>
+          <circle class="gdot" cx="162" cy="56" r="4.5"/><circle class="gdoto" cx="274" cy="128" r="4.5"/>
+          <text class="gtb" x="198" y="30">A: k = 4 / 0.02 = 200 N/m</text>
+          <text class="gtb" x="206" y="190">B: k = 2 / 0.04 = 50 N/m</text>
+        </svg>
+        <figcaption>Spring A: 4 N at 0.02 m gives k = 200 N/m. Spring B: 2 N at 0.04 m gives k = 50 N/m. A is steeper, so A is the stiffer spring.</figcaption>
+      </figure>
+    </section>
+
+    <section class="blk wide" aria-labelledby="hk4">
+      <h2 id="hk4">Your experiment: measuring k (2 Oct)</h2>
+      <p>You hung masses on a spring scale. Your box said F = m·a: for a hanging mass the acceleration is a = g, so the force is its weight <span class="f">F = m·g</span> with g = 9.81 m/s². The start length was L<sub>0</sub> = 1.7 cm = <b>0.017 m</b>, and the extension is <span class="f">x = L − L<sub>0</sub></span>. Always convert cm to m first.</p>
+      <div class="tw"><table>
+        <thead><tr><th>m (kg)</th><th>L (m)</th><th>x = L − L<sub>0</sub> (m)</th><th>F = m·g (N)</th><th>k = F / x (N/m)</th><th>you wrote</th></tr></thead>
+        <tbody>
+          <tr><td class="m">0.5</td><td class="m">0.025</td><td class="m">0.008</td><td class="m">4.905</td><td class="m"><b>613.1</b></td><td class="m"><span class="good">613.125 ✓</span></td></tr>
+          <tr><td class="m">1.5</td><td class="m">0.047</td><td class="m">0.030</td><td class="m">14.715</td><td class="m"><b>490.5</b></td><td class="m"><span class="good">490.5 ✓</span></td></tr>
+          <tr><td class="m">2.5</td><td class="m">0.069</td><td class="m">0.052</td><td class="m">24.525</td><td class="m"><b>471.6</b></td><td class="m"><s>437.5</s></td></tr>
+          <tr><td class="m">3.5</td><td class="m">0.084</td><td class="m">0.067</td><td class="m">34.335</td><td class="m"><b>512.5</b></td><td class="m"><s>496.79</s></td></tr>
+        </tbody></table></div>
+      <div class="check"><h4>Check your notes</h4>Rows 3 and 4 look like typing slips, and a small one. 2.5 · 9.1 / 0.052 = 437.5 and 3.5 · 9.51 / 0.067 = 496.79, so you typed g as <b>9.1</b> and <b>9.51</b> instead of <b>9.81</b>. With g = 9.81: 24.525 / 0.052 = <b>471.6</b> and 34.335 / 0.067 = <b>512.5</b>. Your method was right. Tip: re-type the calculation once as a check.</div>
+      <p><b>Average</b> of the four correct values: (613.1 + 490.5 + 471.6 + 512.5) / 4 ≈ <b>522 N/m</b>. A best-fit line through the origin on an F–x graph gives a slope of about <b>497 N/m</b>, so about 500 N/m.</p>
+      <h3>Why do the values scatter?</h3>
+      <p>The extensions are tiny: the first one is only 8 mm. If you misread the scale by <b>just 1 mm</b>, the first k changes from 613 to <b>545 N/m</b> (x = 9 mm) or <b>701 N/m</b> (x = 7 mm). That is more than 10 %. Lesson: measure several masses, use bigger extensions, and average or take the slope of the graph.</p>
+    </section>
+
+    <section class="blk" aria-labelledby="hk5">
+      <h2 id="hk5">Play with a spring</h2>
+      <div class="simwrap">
+        <div class="sim grid-paper ph" data-sim="hooke">Simulation loading…</div>
+        <div class="try"><h4>Try this</h4><ol>
+          <li>Raise the <b>Mass</b> slider in steps of 0.5 kg and press <b>Record measurement</b> each time. <span class="muted">You should notice: when the mass doubles, the extension doubles too. The F–x graph is a straight line through the origin.</span></li>
+          <li>Clear the table. Set the mass to 1 kg and try <b>Spring constant k</b> = 100, then 400 N/m. <span class="muted">You should notice: the stiffer spring (bigger k) stretches less for the same force, and its F–x line is steeper. k is the slope.</span></li>
+          <li>Raise the mass to about 3.6 kg or more until the warning about the elastic region appears. <span class="muted">You should notice: beyond the elastic limit the graph bends and Hooke's law no longer holds.</span></li>
+        </ol></div>
+      </div>
+    </section>
+
+    <div class="extra blk"><h4>Extra — not in your notes</h4>A mass <i>m</i> on a spring with spring constant <i>k</i> oscillates with <span class="f">T = 2π·<span class="rt">√<span class="ov">m/k</span></span></span>. A heavier mass or a softer spring makes the oscillation slower. You do not need this for the test unless your teacher mentioned it.</div>
+
+    <section class="blk wide" aria-labelledby="hkc"><h2 id="hkc">Check yourself</h2><div class="qhost" data-qtopic="hooke"></div></section>
+    <div class="cta"><a class="btn primary" href="#practice/hooke">Practise this topic</a></div>
+  </div>
+  <nav class="pn" data-pn aria-label="Previous and next page"></nav>
+</section>
+
+<!-- ================= DESCRIBE ================= -->
+<section class="view" id="view-describe" data-view="describe" aria-labelledby="h-describe" hidden>
+  <header class="phead"><div class="phead-in">
+    <p class="eyebrow">Topic 2 of 6 · your notes, 2 Oct and 15 Oct</p>
+    <h1 id="h-describe" tabindex="-1">Describing oscillations</h1>
+  </div></header>
+  <div class="pbody">
+    <div class="inshort"><h2>In short</h2><ul>
+      <li><b>WHAT</b>y(t) is where the object is at time t. r is the biggest elongation (the amplitude), T is one full oscillation, f = 1/T is how many per second.</li>
+      <li><b>HOW</b>y(t) = r·cos(ω·t) with ω = 2π/T = 2π·f. Put your calculator in RAD mode.</li>
+      <li><b>WHY</b>One full oscillation matches one full turn of 2π rad, which takes T seconds. That is why a point on a circle draws the sine curve.</li>
+    </ul></div>
+
+    <section class="blk" aria-labelledby="ds1">
+      <h2 id="ds1">The words</h2>
+      <p>Picture a weight bouncing up and down on a spring.</p>
+      <ul>
+        <li><span class="term">Elongation y(t)</span> (or x(t)): the displacement from the rest position at time t, in m. In your words: "where it is".</li>
+        <li><span class="term">Amplitude r</span>: the maximum elongation, in m. (Other books write ŷ or A. Your class uses <b>r</b>.)</li>
+        <li><span class="term">Period T</span>: the time for <b>one</b> full oscillation, there and back (for example top → bottom → top). Unit s.</li>
+        <li><span class="term">Frequency f</span>: the number of full oscillations per second. Unit <span class="term">hertz</span>: 1 Hz = 1/s = s<sup>−1</sup>.</li>
+      </ul>
+      <div class="formula">f = <span class="frac"><span>1</span><span>T</span></span> <span>T = <span class="frac"><span>1</span><span>f</span></span></span></div>
+      <h3>Angular velocity ω</h3>
+      <div class="formula">ω = <span class="frac"><span>2π</span><span>T</span></span> = 2π·f <small>unit: rad/s (also written 1/s)</small></div>
+      <p>In your class ω is called <span class="term">angular velocity</span>; some books call it <i>angular frequency</i>. It tells you how much <b>angle</b> (in radians) is covered per second. One full oscillation is one full turn = 2π rad, and it takes T seconds. That is the whole idea of ω = 2π / T.</p>
+    </section>
+
+    <section class="blk" aria-labelledby="ds2">
+      <h2 id="ds2">The equation of an oscillation</h2>
+      <div class="formula">y(t) = r · cos(ω · t)</div>
+      <dl class="gfr">
+        <dt>y(t)</dt><dd>where the object is at time t (elongation, m)</dd>
+        <dt>r</dt><dd>maximum elongation = amplitude (m)</dd>
+        <dt>ω</dt><dd>angular velocity (rad/s)</dd>
+        <dt>t</dt><dd>time elapsed (s)</dd>
+      </dl>
+      <div class="check"><h4>Check your notes</h4>Your first attempt was <s>r·cos(t)</s>. It is missing ω. The full form is <b>r·cos(ω·t)</b>. The thing inside the cosine is an angle: ω·t.</div>
+      <h3>sin or cos? It does matter</h3>
+      <ul>
+        <li><span class="f">y = r·sin(ω·t)</span> starts at y = 0 (the rest position) at t = 0.</li>
+        <li><span class="f">y = r·cos(ω·t)</span> starts at y = r (the maximum) at t = 0.</li>
+      </ul>
+      <p>Same shape, shifted by a quarter period (T/4): the sine curve reaches its maximum T/4 later than the cosine curve. Choose the one that matches where the object is at t = 0.</p>
+      <figure class="figbox" style="margin:0"><svg class="fig w" id="figSinCos" viewBox="0 0 440 220" role="img" aria-label="Sine and cosine curves over one period"></svg>
+        <figcaption>Blue: cos starts at the maximum r. Orange: sin starts at 0 and is T/4 behind.</figcaption></figure>
+    </section>
+
+    <section class="blk" aria-labelledby="ds3">
+      <h2 id="ds3">The unit circle</h2>
+      <p>In the class simulation a point moves around a circle of radius r at constant angular velocity ω. After time t it has turned through the angle <span class="f">α = ω·t</span>. Its height comes from a right-angled triangle: sin α = opposite / hypotenuse = y / r, so <span class="f">y = r·sin(α)</span>. Plot that height against time and you get the sine curve of the oscillation.</p>
+      <div class="note">Trig reminder (SOH CAH TOA): sin θ = opposite/hypotenuse · cos θ = adjacent/hypotenuse · tan θ = opposite/adjacent.</div>
+      <div class="simwrap">
+        <div class="sim grid-paper ph" data-sim="circle">Simulation loading…</div>
+        <div class="try"><h4>Try this</h4><ol>
+          <li>Watch the point go once around the circle. <span class="muted">You should notice: the height of the point, plotted against time, draws the sine curve. One turn = one full oscillation.</span></li>
+          <li>Make the <b>Period T</b> shorter. <span class="muted">You should notice: ω = 2π/T gets bigger, so the curve is squeezed along the time axis.</span></li>
+          <li>Use <b>Step 1/8 turn</b> to move in 45° steps. <span class="muted">You should notice: starting at y = 0, the height is at its maximum after a quarter turn (90° = π/2) and back at 0 after half a turn (180° = π).</span></li>
+        </ol></div>
+      </div>
+    </section>
+
+    <section class="blk" aria-labelledby="ds4">
+      <h2 id="ds4">Radians</h2>
+      <p><span class="term">Radians</span> are another scale for measuring angles. One full turn is 2π.</p>
+      <div class="tw"><table>
+        <thead><tr><th>degrees</th><th>0°</th><th>90°</th><th>180°</th><th>270°</th><th>360°</th></tr></thead>
+        <tbody><tr><td class="m"><b>radians</b></td><td class="m">0</td><td class="m">π/2</td><td class="m">π</td><td class="m">3π/2</td><td class="m">2π</td></tr></tbody></table></div>
+      <div class="formula">rad = deg · <span class="frac"><span>π</span><span>180</span></span> <span>deg = rad · <span class="frac"><span>180</span><span>π</span></span></span><small>1 rad ≈ 57.3° <span class="tag info">Extra</span> (your notes have the table; the conversion rule is extra)</small></div>
+      <div class="check"><h4>Calculator trap</h4>When you evaluate r·cos(ω·t), the product ω·t is in <b>radians</b>. Your calculator must be in <b>RAD</b> mode, not DEG. Test it: cos(π) must give −1.</div>
+    </section>
+
+    <section class="blk" aria-labelledby="ds5">
+      <h2 id="ds5">Worked example</h2>
+      <div class="ex"><h4>Where is the weight after 0.10 s?</h4>
+        <p>A weight on a spring has amplitude r = 0.10 m and period T = 0.50 s. It starts at the top (y = r). Find y at t = 0.10 s.</p>
+        <dl class="gfr">
+          <dt>Given</dt><dd>r = 0.10 m, T = 0.50 s, t = 0.10 s</dd>
+          <dt>Choose</dt><dd>starts at the maximum → cosine: y(t) = r·cos(ω·t)</dd>
+          <dt>ω</dt><dd>ω = 2π / T = 2π / 0.50 s = 12.57 rad/s</dd>
+          <dt>Angle</dt><dd>ω·t = 12.57 · 0.10 = 1.257 rad (= 72°)</dd>
+          <dt>Result</dt><dd>y = 0.10 m · cos(1.257) = 0.10 · 0.309 ≈ <b>0.031 m = 3.1 cm</b></dd>
+        </dl></div>
+    </section>
+
+    <section class="blk" aria-labelledby="ds6">
+      <h2 id="ds6">Play with an oscillator</h2>
+      <div class="simwrap">
+        <div class="sim grid-paper ph" data-sim="oscillator">Simulation loading…</div>
+        <div class="try"><h4>Try this</h4><ol>
+          <li>Set <b>Frequency f</b> to 0.80 Hz. Press <b>Lap</b> at each top and read the time between laps. <span class="muted">You should notice: one full oscillation takes T = 1/f = 1.25 s.</span></li>
+          <li>Change the <b>Amplitude r</b> and compare with the time between tops. <span class="muted">You should notice: a bigger r makes the swing bigger, but the time for one oscillation stays 1/f.</span></li>
+          <li>Switch <b>Start</b> between the cos and sin options. <span class="muted">You should notice: cos starts at the top (y = r), sin starts at the rest position (y = 0). The curves have the same shape, shifted by T/4.</span></li>
+        </ol></div>
+      </div>
+    </section>
+
+    <section class="blk wide" aria-labelledby="dsc"><h2 id="dsc">Check yourself</h2><div class="qhost" data-qtopic="describe"></div></section>
+    <div class="cta"><a class="btn primary" href="#practice/describe">Practise this topic</a></div>
+  </div>
+  <nav class="pn" data-pn aria-label="Previous and next page"></nav>
+</section>
+
+
+<!-- ================= DAMPING ================= -->
+<section class="view" id="view-damping" data-view="damping" aria-labelledby="h-damping" hidden>
+  <header class="phead"><div class="phead-in">
+    <p class="eyebrow">Topic 3 of 6 · your notes, 16 and 22–23 Oct</p>
+    <h1 id="h-damping" tabindex="-1">Damping</h1>
+  </div></header>
+  <div class="pbody">
+    <div class="inshort"><h2>In short</h2><ul>
+      <li><b>WHAT</b>Damping is friction (air resistance, friction inside the spring) taking energy away, so the bouncing weight slowly comes to rest.</li>
+      <li><b>HOW</b>The amplitude shrinks by about the same factor every half-swing: A<sub>n</sub> = A<sub>0</sub>·0.8<sup>n</sup>. The period T stays the same.</li>
+      <li><b>WHY</b>Friction removes energy, so the weight reaches less far each time. It does not change how long one swing takes (for the weak damping seen in class).</li>
+    </ul></div>
+
+    <section class="blk" aria-labelledby="dp1">
+      <h2 id="dp1">What damping does</h2>
+      <div class="def"><span class="term">Damping</span>: different kinds of friction take energy away from the oscillation, so the amplitude gradually gets smaller until the weight is at rest.</div>
+      <ul>
+        <li>The <b>amplitude goes down</b>.</li>
+        <li>The <b>frequency (and the period) stays the same</b>. The oscillation just gets smaller.</li>
+      </ul>
+      <div class="check"><h4>Check your notes</h4>The word is <b>damping</b>, not "dampening". Your answers are accepted either way here, but use "damping" in the test.</div>
+      <p><span class="term">Shock absorbers</span> in a car are your example: they damp the bouncing of the car on its springs, so the car stops bouncing quickly. Other examples <span class="tag info">Extra</span>: a swing slowing down, a guitar string fading out, a door closer.</p>
+    </section>
+
+    <section class="blk wide" aria-labelledby="dp2">
+      <h2 id="dp2">Your data (16 Oct)</h2>
+      <p>Each entry is a <b>turning point</b>, one <b>half</b> period after the one before.</p>
+      <div class="tw"><table>
+        <thead><tr><th>t (s)</th><th>0</th><th>0.42</th><th>0.86</th><th>1.21</th><th>1.64</th><th>2.06</th><th>2.46</th><th>2.88</th><th>3.28</th><th>3.68</th></tr></thead>
+        <tbody><tr><td class="m"><b>y (cm)</b></td><td class="m">40</td><td class="m">−33</td><td class="m">24</td><td class="m">−20</td><td class="m">15</td><td class="m">−12</td><td class="m">10</td><td class="m">−7</td><td class="m">6</td><td class="m">−5</td></tr></tbody></table></div>
+      <p class="small muted"><b>Why the gaps are not all equal:</b> the time between turning points scatters between 0.35 s and 0.44 s. That is normal stopwatch timing error. So don't use one gap: use several periods, T = 3.28 s / 4 ≈ 0.82 s.</p>
+      <figure class="figbox" style="margin:0"><svg class="fig w" id="figDamp" viewBox="0 0 520 320" role="img" aria-label="Damped oscillation: turning points from your data inside a dashed shrinking envelope"></svg>
+        <figcaption>Your turning points (dots) joined by a smooth curve. The dashed lines are the envelope ±40·0.8<sup>t/0.41</sup> cm: the amplitude shrinks exponentially.</figcaption></figure>
+    </section>
+
+    <section class="blk" aria-labelledby="dp3">
+      <h2 id="dp3">Reading the period from the graph</h2>
+      <p>The turning points come about every <b>0.41 s</b>. That is <b>half</b> a period (top → bottom is only half an oscillation).</p>
+      <p>Better to use the maxima: they are at 0, 0.86, 1.64, 2.46 and 3.28 s. That is <b>4 periods in 3.28 s</b>:</p>
+      <div class="formula">T = <span class="frac"><span>3.28 s</span><span>4</span></span> ≈ 0.82 s <span>f = <span class="frac"><span>1</span><span>T</span></span> ≈ 1.22 Hz</span> <span>ω = <span class="frac"><span>2π</span><span>T</span></span> ≈ 7.7 rad/s</span></div>
+      <p>The time between maxima stays about 0.82 s even though the amplitude shrinks. That is the evidence that <b>damping does not change the frequency</b>.</p>
+    </section>
+
+    <section class="blk" aria-labelledby="dp4">
+      <h2 id="dp4">Exponential decay</h2>
+      <p>In the class simulation (damping on one notch) each half-swing the amplitude was multiplied by about the same factor, <b>≈ 0.8</b>. Multiplying by 0.8 is the same as dividing by <span class="frac"><span>5</span><span>4</span></span> (= 1.25). The ratios of your successive |y| values were 0.83, 0.73, 0.83, 0.75, 0.80, 0.83, 0.70, 0.86 and 0.83. The average is about 0.80.</p>
+      <div class="formula">A<sub>n</sub> = A<sub>0</sub> · 0.8<sup>n</sup><small>n = number of half-swings · A<sub>0</sub> = starting amplitude</small></div>
+      <p class="small muted">Your notes number the amplitudes A<sub>1</sub> = 40, A<sub>2</sub> = 33, …; in A<sub>n</sub> = A<sub>0</sub>·0.8<sup>n</sup> the start value is A<sub>0</sub>, so your A<sub>1</sub> is A<sub>0</sub> here.</p>
+      <div class="ex"><h4>Worked example</h4>
+        <p>A<sub>0</sub> = 40 cm. After 6 half-swings?</p>
+        <dl class="gfr"><dt>Formula</dt><dd>A<sub>6</sub> = A<sub>0</sub> · 0.8<sup>6</sup></dd><dt>Result</dt><dd>40 cm · 0.262 ≈ <b>10.5 cm</b></dd><dt>Compare</dt><dd>Your data at t = 2.46 s (after 6 half-swings): 10 cm. Close.</dd></dl>
+        <p class="small muted">Step by step: 40 → 32 → 25.6 → 20.5 → 16.4 → 13.1 → 10.5 cm.</p></div>
+      <p>Your 23 Oct table (measured against "× 0.8, was supposed to be"):</p>
+      <div class="tw"><table>
+        <thead><tr><th>turning point</th><th>you measured (cm)</th><th>model 40·0.8<sup>n</sup><sup>−1</sup> (cm)</th></tr></thead>
+        <tbody><tr><td class="m">A<sub>1</sub></td><td class="m">40</td><td class="m">40</td></tr><tr><td class="m">A<sub>2</sub></td><td class="m">33</td><td class="m">32</td></tr><tr><td class="m">A<sub>3</sub></td><td class="m">24</td><td class="m">25.6</td></tr></tbody></table></div>
+      <p class="small muted">Measured values are close to the model, so the model is a good description.</p>
+    </section>
+
+    <section class="blk" aria-labelledby="dp5">
+      <h2 id="dp5">Damped oscillator</h2>
+      <p>This oscillator has damping switched on. Watch the amplitude and count the time between peaks.</p>
+      <div class="simwrap">
+        <div class="sim grid-paper ph" data-sim="oscillator" data-damping="4">Simulation loading…</div>
+        <div class="try"><h4>Try this</h4><ol>
+          <li>Press <b>Lap</b> at each top, near the start and again near the end. <span class="muted">You should notice: the time between tops stays the same while the tops get lower. Damping does not change the period.</span></li>
+          <li>Look at the <b>Damping</b> slider: notch 4 means ×0.80 per half-swing. Read the height of successive peaks and divide each by the one before. <span class="muted">You should notice: the factor is about the same every time (about 0.8). That is exponential decay.</span></li>
+          <li>Move the <b>Damping</b> slider to 0 and then to 5. <span class="muted">You should notice: with 0 the amplitude does not shrink; with 5 it dies out fast. The period is the same in all cases.</span></li>
+        </ol></div>
+      </div>
+    </section>
+
+    <section class="blk wide" aria-labelledby="dpc"><h2 id="dpc">Check yourself</h2><div class="qhost" data-qtopic="damping"></div></section>
+    <div class="cta"><a class="btn primary" href="#practice/damping">Practise this topic</a></div>
+  </div>
+  <nav class="pn" data-pn aria-label="Previous and next page"></nav>
+</section>
+
+<!-- ================= PENDULUM ================= -->
+<section class="view" id="view-pendulum" data-view="pendulum" aria-labelledby="h-pendulum" hidden>
+  <header class="phead"><div class="phead-in">
+    <p class="eyebrow">Topic 4 of 6 · your notes, 23 Oct and 5 Nov</p>
+    <h1 id="h-pendulum" tabindex="-1">Pendulums</h1>
+  </div></header>
+  <div class="pbody">
+    <div class="inshort"><h2>In short</h2><ul>
+      <li><b>WHAT</b>A pendulum is a weight swinging on a string. How fast it swings depends on its length l and on g, but <b>not</b> on its mass.</li>
+      <li><b>HOW</b>ω = √(g/l), T = 2π·√(l/g), g = 4π²·l/T². Valid for small swing angles.</li>
+      <li><b>WHY</b>Only g and l appear in ω = √(g/l). Mass is not in the formula. Longer pendulum: slower. Stronger gravity: faster.</li>
+    </ul></div>
+
+    <section class="blk wide" aria-labelledby="pd1">
+      <h2 id="pd1">What does the frequency depend on?</h2>
+      <div class="tw"><table>
+        <thead><tr><th>Does the frequency depend on …</th><th>Answer</th><th>Reason</th></tr></thead>
+        <tbody>
+          <tr><td><b>m</b> (mass)</td><td><span class="tag stop">No</span></td><td>m does not appear in ω = √(g/l).</td></tr>
+          <tr><td><b>l</b> (length)</td><td><span class="tag ok">Yes</span></td><td>l is in the formula: the <b>shorter</b> the pendulum, the faster it swings (higher frequency).</td></tr>
+          <tr><td><b>g</b> (gravitational acceleration)</td><td><span class="tag ok">Yes</span></td><td>g is in the formula: the <b>stronger</b> the gravity, the higher the frequency.</td></tr>
+        </tbody></table></div>
+    </section>
+
+    <section class="blk" aria-labelledby="pd2">
+      <h2 id="pd2">The formulas</h2>
+      <div class="formula">ω = <span class="rt">√<span class="ov"><span class="frac"><span>g</span><span>l</span></span></span></span> <span>ω = 2π·f</span> <span>f = <span class="frac"><span>1</span><span>T</span></span></span></div>
+      <p>Put ω = 2π / T and ω = √(g/l) together:</p>
+      <div class="ex"><h4>Derivation (2 lines) <span class="tag info">Extra · worked out from your formulas</span></h4>
+        <p><span class="frac"><span>2π</span><span>T</span></span> = <span class="rt">√<span class="ov"><span class="frac"><span>g</span><span>l</span></span></span></span> &nbsp;⟹&nbsp; <b>T = 2π·<span class="rt">√<span class="ov"><span class="frac"><span>l</span><span>g</span></span></span></span></b></p>
+        <p>Square ω = √(g/l): ω² = g/l &nbsp;⟹&nbsp; g = ω²·l, and with ω = 2π/T: <b>g = <span class="frac"><span>4π²·l</span><span>T²</span></span></b></p></div>
+      <div class="formula">T = 2π·<span class="rt">√<span class="ov"><span class="frac"><span>l</span><span>g</span></span></span></span> <span>g = ω²·l = <span class="frac"><span>4π²·l</span><span>T²</span></span></span></div>
+      <p><span class="term">Consequence:</span> <span class="tag info">Extra · worked out from your formulas</span> 4 times longer means the period doubles (T grows with the square root of l).</p>
+      <div class="note"><b>Small angles only.</b> <span class="tag info">Extra</span> These formulas are an approximation for small swing angles, roughly below 10–15°.</div>
+    </section>
+
+    <section class="blk" aria-labelledby="pd3">
+      <h2 id="pd3">Your two worked examples</h2>
+      <div class="two">
+        <div class="ex"><h4>Example A · 23 Oct</h4>
+          <dl class="gfr"><dt>Given</dt><dd>l = 1 m, T ≈ 2.55 s (simulation)</dd>
+            <dt>Formula</dt><dd>f = 1/T · ω = 2π·f · g = ω²·l</dd>
+            <dt>Result</dt><dd>f ≈ 0.392 Hz<br>ω ≈ 2.464 rad/s<br>g = 2.464² · 1 ≈ <b>6.07 m/s²</b> <span class="good">✓</span></dd></dl>
+          <p class="small muted"><span class="tag info">Extra</span> On Earth a 1 m pendulum has T ≈ 2.01 s. T = 2.55 s means weaker gravity.</p></div>
+        <div class="ex"><h4>Example B · 5 Nov · "Planet X"</h4>
+          <dl class="gfr"><dt>Given</dt><dd>l = 1 m, T = 1.69 s (simulation)</dd>
+            <dt>Formula</dt><dd>g = (2π/T)² · l</dd>
+            <dt>Result</dt><dd>g = (2π / 1.69)² · 1 ≈ <b>13.82 m/s²</b> <span class="good">✓</span></dd></dl>
+          <p class="small muted">You used l = 1, so the "× l" was invisible. The general formula needs it.</p></div>
+      </div>
+      <div class="note"><b>Measuring tip:</b> <span class="tag info">Extra</span> time <b>10 full swings</b> and divide by 10. This reduces the error from your reaction time.</div>
+    </section>
+
+    <section class="blk" aria-labelledby="pd4">
+      <h2 id="pd4">Play with a pendulum</h2>
+      <div class="simwrap">
+        <div class="sim grid-paper ph" data-sim="pendulum">Simulation loading…</div>
+        <div class="try"><h4>Try this</h4><ol>
+          <li>Press <b>Start timing</b> and time 10 swings. Then change the <b>Mass</b> slider and time again. <span class="muted">You should notice: the period does not change when the mass changes.</span></li>
+          <li>Set <b>Length l</b> to 0.25 m, time 10 swings, then use 1.00 m. <span class="muted">You should notice: 4 times as long gives twice the period, so the shorter pendulum swings faster.</span></li>
+          <li>Find g of Planet X: choose <b>Planet X (mystery)</b> under <b>Gravity</b>, time 10 swings, divide by 10 for T, then use g = 4π²·l/T². Type your g in the box and press <b>Check</b>. <span class="muted">You should notice: a stronger g makes the pendulum swing faster. Keep the start angle small.</span></li>
+        </ol></div>
+      </div>
+    </section>
+
+    <section class="blk wide" aria-labelledby="pdc"><h2 id="pdc">Check yourself</h2><div class="qhost" data-qtopic="pendulum"></div></section>
+    <div class="cta"><a class="btn primary" href="#practice/pendulum">Practise this topic</a></div>
+  </div>
+  <nav class="pn" data-pn aria-label="Previous and next page"></nav>
+</section>
+
+<!-- ================= RESONANCE ================= -->
+<section class="view" id="view-resonance" data-view="resonance" aria-labelledby="h-resonance" hidden>
+  <header class="phead"><div class="phead-in">
+    <p class="eyebrow">Topic 5 of 6 · your notes, 6 Nov</p>
+    <h1 id="h-resonance" tabindex="-1">Resonance</h1>
+  </div></header>
+  <div class="pbody">
+    <div class="inshort"><h2>In short</h2><ul>
+      <li><b>WHAT</b>A repeating (periodic) force acts on a system that can oscillate, at or close to its natural frequency. The amplitude gets larger, even very large.</li>
+      <li><b>HOW</b>Compare the driving frequency with the natural frequency. Equal or close: big amplitude. Far below: the mass just follows the driver (about ×1). Far above: it hardly moves. More damping: lower peak.</li>
+      <li><b>WHY</b>Think of pushing a swing: pushes in rhythm with the swing build up the motion.</li>
+    </ul></div>
+
+    <section class="blk" aria-labelledby="rs1">
+      <h2 id="rs1">What resonance is</h2>
+      <div class="def"><span class="term">Resonance</span> happens when an external (periodic) force is applied to a system that can oscillate, at or close to the <span class="term">natural frequency</span> of that system. <b>The amplitude increases</b> (it can become very large).<br><span class="small">In the words of your notes: an external force acts on a <i>potentially oscillating system</i> at or close to its <i>natural (or "individual") frequency</i>.</span></div>
+      <p>The <span class="term">natural frequency</span> (also called eigenfrequency <span class="tag info">Extra</span>) is the frequency at which a system oscillates by itself after it was disturbed once.</p>
+      <h3>What happens to the amplitude?</h3>
+      <ul>
+        <li>Far <b>below</b> the natural frequency f<sub>0</sub> the mass just follows the driver (the amplitude is about ×1 the driver's movement).</li>
+        <li>Far <b>above</b> f<sub>0</sub> the mass hardly moves.</li>
+        <li><b>Near</b> f<sub>0</sub> the amplitude is the <b>largest</b>.</li>
+        <li><span class="tag info">Extra</span> <b>Strong damping</b> keeps the resonance peak lower (and the peak then sits slightly below f<sub>0</sub>).</li>
+      </ul>
+    </section>
+
+    <section class="blk" aria-labelledby="rs2">
+      <h2 id="rs2">Examples</h2>
+      <p><span class="tag info">Examples for your answers (not from your notes)</span></p>
+      <ul>
+        <li>Pushing a child on a swing in rhythm with the swing.</li>
+        <li>A wine glass shattered by a loud sound at its natural frequency.</li>
+        <li>Parts of a car or bus rattling at one particular engine speed.</li>
+        <li>Soldiers are ordered to break step when marching over a bridge.</li>
+        <li>The London Millennium Bridge (2000) wobbled sideways when the crowd's footsteps matched its natural frequency. It was fixed by adding dampers.</li>
+      </ul>
+    </section>
+
+    <section class="blk" aria-labelledby="rs3">
+      <h2 id="rs3">Play with resonance</h2>
+      <div class="simwrap">
+        <div class="sim grid-paper ph" data-sim="resonance">Simulation loading…</div>
+        <div class="try"><h4>Try this</h4><ol>
+          <li>Move the <b>Driving frequency</b> slowly from low to high, then press <b>Set f_d = f<sub>0</sub></b>. <span class="muted">You should notice: the amplitude is largest when the driving frequency matches (or is close to) the natural frequency.</span></li>
+          <li>Drive far below and far above the natural frequency. <span class="muted">You should notice: the amplitude stays small.</span></li>
+          <li>Change <b>Damping</b> from weak to strong and look at the peak again. <span class="muted">You should notice: strong damping keeps the resonance peak lower.</span></li>
+        </ol></div>
+      </div>
+    </section>
+
+    <section class="blk wide" aria-labelledby="rsc"><h2 id="rsc">Check yourself</h2><div class="qhost" data-qtopic="resonance"></div></section>
+    <div class="cta"><a class="btn primary" href="#practice/resonance">Practise this topic</a></div>
+  </div>
+  <nav class="pn" data-pn aria-label="Previous and next page"></nav>
+</section>
+
+
+<!-- ================= WAVES ================= -->
+<section class="view" id="view-waves" data-view="waves" aria-labelledby="h-waves" hidden>
+  <header class="phead"><div class="phead-in">
+    <p class="eyebrow">Topic 6 of 6 · your notes, mid Nov</p>
+    <h1 id="h-waves" tabindex="-1">Waves</h1>
+  </div></header>
+  <div class="pbody">
+    <div class="inshort"><h2>In short</h2><ul>
+      <li><b>WHAT</b>Oscillations that spread out in space are waves. The particles only oscillate around their rest position. What travels is the oscillation (the disturbance, the energy).</li>
+      <li><b>HOW</b>c = f·λ. Transverse: oscillation ⟂ direction of travel. Longitudinal: oscillation ∥ direction of travel.</li>
+      <li><b>WHY</b>Each particle is set oscillating by its neighbour. The speed depends on the medium (for a string: the tension), not on frequency or amplitude.</li>
+    </ul></div>
+
+    <section class="blk" aria-labelledby="wv1">
+      <h2 id="wv1">What is a wave?</h2>
+      <div class="def"><span class="term">Waves</span> are oscillations that spread out in space. Each particle is set oscillating (excited) by its neighbour, so the oscillation is passed along.</div>
+      <p>In your notes: oscillation ≙ excitation. Each particle is <i>excited</i> by its neighbour. The particles <b>only oscillate around their rest position</b>. They do <b>not</b> travel with the wave. What travels is the oscillation (the disturbance, the energy).</p>
+    </section>
+
+    <section class="blk wide" aria-labelledby="wv2">
+      <h2 id="wv2">Transverse and longitudinal waves</h2>
+      <div class="two">
+        <div class="card"><h3><span class="term">Transverse</span> wave</h3>
+          <p>The direction of oscillation is <b>perpendicular</b> to the direction the wave travels. (Also called transversal.)</p>
+          <ul><li>A rope moved up and down: the wave travels horizontally.</li><li>A guitar string. <span class="tag info">Extra</span></li><li><span class="tag info">Extra</span> The stadium wave ("La Ola"): people stand up and sit down, the wave runs around the stadium.</li></ul></div>
+        <div class="card"><h3><span class="term">Longitudinal</span> wave</h3>
+          <p>The direction of oscillation is <b>parallel</b> to the direction the wave travels.</p>
+          <ul><li>Sound in air (compressions and rarefactions <span class="tag info">Extra</span>).</li><li>A slinky pushed and pulled along its length. <span class="tag info">Extra</span></li><li>People in a queue being pushed.</li></ul></div>
+      </div>
+      <div class="check"><h4>Check your notes</h4>You wrote <s>"longitude wave"</s>. The word is <b>longitudinal</b>. "Longitude" is the geography word (lines on a map). Water waves are a mix of both types, so do not use them as an example of either.</div>
+    </section>
+
+    <section class="blk" aria-labelledby="wv3">
+      <h2 id="wv3">Wavelength, crest, trough, amplitude</h2>
+      <figure class="figbox" style="margin:0"><svg class="fig w" id="figWave" viewBox="0 0 560 240" role="img" aria-label="A transverse wave with crest, trough, wavelength and amplitude labelled"></svg>
+        <figcaption>The wave travels to the right; each point only moves up and down.</figcaption></figure>
+      <ul>
+        <li><span class="term">Wavelength λ</span>: the distance between two neighbouring crests (or two neighbouring troughs; for longitudinal waves two neighbouring compressions). Unit m.</li>
+        <li><span class="term">Crest</span> = highest point. <span class="term">Trough</span> = lowest point.</li>
+        <li><span class="term">Amplitude</span> = maximum displacement from the rest position.</li>
+      </ul>
+    </section>
+
+    <section class="blk" aria-labelledby="wv4">
+      <h2 id="wv4">Wave speed</h2>
+      <div class="formula">c = f · λ <span>c = <span class="frac"><span>λ</span><span>T</span></span></span><small>c = wave speed (m/s) · f = frequency (Hz) · λ = wavelength (m) · T = period (s)</small></div>
+      <p>In one period the wave moves on by one wavelength, so c = λ / T <span class="tag info">Extra</span>. Since f = 1/T, that is the same as c = f·λ.</p>
+      <div class="ex"><h4>Worked example (your control question)</h4>
+        <dl class="gfr"><dt>Given</dt><dd>f = 4 Hz, λ = 0.5 m</dd><dt>Formula</dt><dd>c = f·λ</dd><dt>Result</dt><dd>c = 4 · 0.5 = <b>2 m/s</b> <span class="good">✓</span></dd></dl></div>
+      <h3>What does the speed depend on?</h3>
+      <ul>
+        <li><b>Yes:</b> the medium. For a string, the <span class="term">tension</span>: higher tension means faster.</li>
+        <li><b>No:</b> the frequency, and not the amplitude.</li>
+      </ul>
+      <p>Same medium, double the frequency: the wavelength <b>halves</b> and the speed <b>stays the same</b>.</p>
+    </section>
+
+    <section class="blk" aria-labelledby="wv5">
+      <h2 id="wv5">Reflection at the end of a string</h2>
+      <figure class="figbox" style="margin:0"><svg class="fig w" id="figRefl" viewBox="0 0 560 250" role="img" aria-label="A pulse reflected at a fixed end comes back upside down; at a loose end it comes back upright"></svg>
+        <figcaption>Arrows show the direction of travel. Top: pulse going in. Bottom: pulse coming back.</figcaption></figure>
+      <ul>
+        <li><span class="term">Fixed end</span>: the pulse comes back <b>upside down</b> (inverted). In your words: it "goes under".</li>
+        <li><span class="term">Loose (free) end</span>: the pulse comes back the <b>same way up</b> (upright).</li>
+      </ul>
+      <p class="small muted">If the returning pulse looks smaller, that is energy loss (damping), not the rule.</p>
+    </section>
+
+    <section class="blk wide" aria-labelledby="wv6">
+      <h2 id="wv6">Your worksheet, corrected ("Waves on a string")</h2>
+      <div class="two">
+        <div class="card"><h3>Task A · bead and wave</h3>
+          <ul>
+            <li>Bead moves vertically <span class="good">✓</span></li>
+            <li>Wave moves horizontally <span class="good">✓</span></li>
+            <li>Q4: transverse(al) <span class="good">✓</span></li>
+          </ul>
+          <div class="check"><h4>Check your notes · Q3</h4>"Does the bead travel with the wave?" You wrote: <s>"No, because the chain itself isn't getting longer."</s> That is weak.<br>Better: <b>"No. Each bead only oscillates up and down around its rest position; only the oscillation (energy) travels to the right."</b></div></div>
+        <div class="card"><h3>Task B · same tension</h3>
+          <div class="tw"><table><thead><tr><th>f (Hz)</th><th>λ (cm)</th><th>λ·f (cm/s)</th></tr></thead><tbody>
+            <tr><td class="m">1</td><td class="m">4.2</td><td class="m">4.2</td></tr><tr><td class="m">2</td><td class="m">2.1</td><td class="m">4.2</td></tr><tr><td class="m">3</td><td class="m">1.4</td><td class="m">4.2</td></tr></tbody></table></div>
+          <p><span class="good">✓</span> Bigger frequency, shorter wavelength. <span class="good">✓</span> λ·f stays 4.2 cm/s: that is the wave speed.</p></div>
+      </div>
+      <div class="card"><h3>Task C · timing a pulse</h3>
+        <div class="tw"><table><thead><tr><th>setting</th><th>time (s)</th></tr></thead><tbody>
+          <tr><td>low tension (39 %)</td><td class="m">2.71</td></tr><tr><td>high tension (80 %)</td><td class="m">1.66</td></tr><tr><td>high tension + bigger amplitude</td><td class="m">1.76</td></tr></tbody></table></div>
+        <p><b>Q7</b> "Tension makes it faster" <span class="good">✓</span></p>
+        <div class="check"><h4>Check your notes · Q8 (important)</h4>You wrote: <s>"bigger amplitude makes it slower."</s> This is <b>wrong</b>. <b>The wave speed does not depend on the amplitude.</b> Your worksheet's own summary says so. The difference between 1.66 s and 1.76 s is only 0.1 s. That is stopwatch reaction-time error, not a real effect.</div></div>
+      <div class="card"><h3>Task D · reflection</h3>
+        <ul><li>Fixed end: the pulse comes back <b>inverted</b> <span class="good">✓</span>.</li><li>Loose end: the pulse comes back <b>upright</b> <span class="good">✓</span>.</li></ul>
+        <div class="check"><h4>Check your notes</h4>Your extra remarks "the entire string moves" and "less amplitude" are not the rule. The rule is only: <b>fixed end → upside down, loose end → upright.</b></div></div>
+      <div class="card"><h3>Summary and control questions</h3>
+        <ul>
+          <li>The particles only <b>oscillate</b> around their rest position. <span class="bad">(The blank you left empty.)</span></li>
+          <li>λ = distance between two neighbouring <b>crests</b>.</li>
+          <li>c = <b>f · λ</b>.</li>
+          <li>The speed depends on the <b>tension</b> (the medium), <b>not</b> on frequency or amplitude.</li>
+          <li>Double f (same tension): λ halves, speed stays the same <span class="good">✓</span>. f = 4 Hz, λ = 0.5 m: c = 2 m/s <span class="good">✓</span>.</li>
+        </ul></div>
+    </section>
+
+    <section class="blk" aria-labelledby="wv7">
+      <h2 id="wv7">Play with a wave</h2>
+      <div class="simwrap">
+        <div class="sim grid-paper ph" data-sim="wave">Simulation loading…</div>
+        <div class="try"><h4>Try this</h4><ol>
+          <li>Tick <b>Highlight one bead</b> and follow it. <span class="muted">You should notice: the bead only moves up and down around its rest position. Only the oscillation travels along.</span></li>
+          <li>Tick <b>Show wavelength λ</b>, then double the <b>Frequency</b> with the <b>Tension</b> unchanged. <span class="muted">You should notice: the wavelength halves. The wave speed c = f·λ stays the same.</span></li>
+          <li>Change the <b>Amplitude</b>, then change the <b>Tension</b>. <span class="muted">You should notice: the amplitude does not change the speed. Tension does (higher tension, faster).</span></li>
+          <li>Choose <b>Pulse + reflection</b>, switch <b>End of the string</b> between fixed and loose, and press <b>Send pulse</b>. <span class="muted">You should notice: at a fixed end the pulse returns upside down. At a loose end it returns upright.</span></li>
+        </ol></div>
+      </div>
+    </section>
+
+    <section class="blk wide" aria-labelledby="wvc"><h2 id="wvc">Check yourself</h2><div class="qhost" data-qtopic="waves"></div></section>
+    <div class="cta"><a class="btn primary" href="#practice/waves">Practise this topic</a></div>
+  </div>
+  <nav class="pn" data-pn aria-label="Previous and next page"></nav>
+</section>
+
+
+<!-- ================= PRACTICE ================= -->
+<section class="view" id="view-practice" data-view="practice" aria-labelledby="h-practice" hidden>
+  <header class="phead"><div class="phead-in">
+    <p class="eyebrow">Practise · questions and calculations</p>
+    <h1 id="h-practice" tabindex="-1">Practice</h1>
+    <p class="lead">One question at a time. Wrong answers come back a few questions later.</p>
+  </div></header>
+  <div class="pbody">
+    <div id="prSetup" class="panel"></div>
+    <div id="prSession" hidden></div>
+    <div id="prSummary" hidden></div>
+  </div>
+  <nav class="pn" data-pn aria-label="Previous and next page"></nav>
+</section>
+
+<!-- ================= CARDS ================= -->
+<section class="view" id="view-cards" data-view="cards" aria-labelledby="h-cards" hidden>
+  <header class="phead"><div class="phead-in">
+    <p class="eyebrow">Practise · spaced repetition</p>
+    <h1 id="h-cards" tabindex="-1">Flashcards</h1>
+    <p class="lead">Cards you know move up a box and come back later. Cards you miss start again in box 1.</p>
+  </div></header>
+  <div class="pbody">
+    <div id="cdSetup" class="panel"></div>
+    <div id="cdStage"></div>
+  </div>
+  <nav class="pn" data-pn aria-label="Previous and next page"></nav>
+</section>
+
+<!-- ================= MOCK ================= -->
+<section class="view" id="view-mock" data-view="mock" aria-labelledby="h-mock" hidden>
+  <header class="phead"><div class="phead-in">
+    <p class="eyebrow">Practise · under test conditions</p>
+    <h1 id="h-mock" tabindex="-1">Mock test</h1>
+    <p class="lead">16 questions, 30 minutes, no feedback until you hand in.</p>
+  </div></header>
+  <div class="pbody">
+    <div id="mkBody"></div>
+  </div>
+  <nav class="pn" data-pn aria-label="Previous and next page"></nav>
+</section>
+
+<!-- ================= FORMULAS ================= -->
+<section class="view" id="view-formulas" data-view="formulas" aria-labelledby="h-formulas" hidden>
+  <header class="phead"><div class="phead-in">
+    <p class="eyebrow">Reference · one page</p>
+    <h1 id="h-formulas" tabindex="-1">Formula sheet</h1>
+    <p class="lead">Everything from your notes in one place.</p>
+  </div></header>
+  <div class="pbody">
+    <section class="blk wide" aria-labelledby="fm1">
+      <h2 id="fm1">Formulas</h2>
+      <div class="tw"><table>
+        <thead><tr><th>Formula</th><th>Meaning</th><th>Units</th></tr></thead>
+        <tbody>
+          <tr><td class="m">F = −k·x<br><span class="muted">(size: F = k·x)</span></td><td>Hooke's law, restoring force</td><td class="m">N, N/m, m</td></tr>
+          <tr><td class="m">k = F / x</td><td>spring constant (slope of the F–x graph)</td><td class="m">N/m = kg/s²</td></tr>
+          <tr><td class="m">F = m·g</td><td>weight of a hanging mass</td><td class="m">N, kg, m/s²</td></tr>
+          <tr><td class="m">y(t) = r·cos(ω·t)<br>or r·sin(ω·t)</td><td>elongation at time t (cos starts at r, sin starts at 0)</td><td class="m">m</td></tr>
+          <tr><td class="m">f = 1/T, T = 1/f</td><td>frequency and period</td><td class="m">Hz = 1/s, s</td></tr>
+          <tr><td class="m">ω = 2π/T = 2π·f</td><td>angular velocity</td><td class="m">rad/s</td></tr>
+          <tr><td class="m">rad = deg·π/180</td><td>angle conversion (deg = rad·180/π) <span class="tag info">Extra</span></td><td class="m"></td></tr>
+          <tr><td class="m">A<sub>n</sub> = A<sub>0</sub>·q<sup>n</sup><br><span class="muted">(q ≈ 0.8 per half-swing in class)</span></td><td>damped amplitude (exponential decay)</td><td class="m"></td></tr>
+          <tr><td class="m">ω = √(g/l)<br>T = 2π·√(l/g)<br>g = ω²·l = 4π²l/T²</td><td>pendulum (small angles); T and g formulas worked out from ω = √(g/l) <span class="tag info">Extra · worked out from your formulas</span></td><td class="m">rad/s, s, m/s²</td></tr>
+          <tr><td class="m">c = f·λ = λ/T</td><td>wave speed</td><td class="m">m/s</td></tr>
+          <tr><td class="m">T = 2π·√(m/k)</td><td><span class="tag info">Extra — not in your notes</span> mass on a spring</td><td class="m">s</td></tr>
+        </tbody></table></div>
+    </section>
+
+    <section class="blk wide" aria-labelledby="fm2">
+      <h2 id="fm2">Symbols and units</h2>
+      <div class="tw"><table>
+        <thead><tr><th>Symbol</th><th>Name</th><th>Unit</th></tr></thead>
+        <tbody>
+          <tr><td class="m">F</td><td>force</td><td class="m">N (newton)</td></tr>
+          <tr><td class="m">k</td><td>spring constant</td><td class="m">N/m = kg/s²</td></tr>
+          <tr><td class="m">x, y(t)</td><td>extension / elongation (distance from the rest position)</td><td class="m">m</td></tr>
+          <tr><td class="m">r</td><td>amplitude (maximum elongation)</td><td class="m">m</td></tr>
+          <tr><td class="m">m</td><td>mass</td><td class="m">kg</td></tr>
+          <tr><td class="m">g</td><td>gravitational acceleration (9.81 on Earth)</td><td class="m">m/s²</td></tr>
+          <tr><td class="m">t</td><td>time</td><td class="m">s</td></tr>
+          <tr><td class="m">T</td><td>period (one full oscillation)</td><td class="m">s</td></tr>
+          <tr><td class="m">f</td><td>frequency</td><td class="m">Hz = 1/s</td></tr>
+          <tr><td class="m">ω</td><td>angular velocity</td><td class="m">rad/s</td></tr>
+          <tr><td class="m">l</td><td>pendulum length</td><td class="m">m</td></tr>
+          <tr><td class="m">λ</td><td>wavelength</td><td class="m">m</td></tr>
+          <tr><td class="m">c</td><td>wave speed</td><td class="m">m/s</td></tr>
+        </tbody></table></div>
+    </section>
+
+    <section class="blk wide" aria-labelledby="fm3">
+      <h2 id="fm3">Which formula do I need?</h2>
+      <div class="tw"><table>
+        <thead><tr><th>If you know …</th><th>and want …</th><th>use</th></tr></thead>
+        <tbody>
+          <tr><td>force F and extension x</td><td>spring constant k</td><td class="m">k = F / x</td></tr>
+          <tr><td>k and extension x</td><td>force F</td><td class="m">F = k·x</td></tr>
+          <tr><td>hanging mass m</td><td>force F</td><td class="m">F = m·g</td></tr>
+          <tr><td>period T</td><td>frequency f</td><td class="m">f = 1/T</td></tr>
+          <tr><td>frequency f</td><td>period T</td><td class="m">T = 1/f</td></tr>
+          <tr><td>T or f</td><td>angular velocity ω</td><td class="m">ω = 2π/T = 2π·f</td></tr>
+          <tr><td>r, ω and time t</td><td>position y</td><td class="m">y = r·cos(ω·t)  (RAD mode)</td></tr>
+          <tr><td>A<sub>0</sub> and number of half-swings n</td><td>amplitude A<sub>n</sub></td><td class="m">A<sub>n</sub> = A<sub>0</sub>·0.8<sup>n</sup></td></tr>
+          <tr><td>pendulum length l (and g)</td><td>period T</td><td class="m">T = 2π·√(l/g)</td></tr>
+          <tr><td>l and T</td><td>gravity g</td><td class="m">g = 4π²·l/T²</td></tr>
+          <tr><td>frequency f and wavelength λ</td><td>wave speed c</td><td class="m">c = f·λ</td></tr>
+          <tr><td>c and f</td><td>wavelength λ</td><td class="m">λ = c / f</td></tr>
+        </tbody></table></div>
+    </section>
+
+    <section class="blk" aria-labelledby="fm4">
+      <h2 id="fm4">Unit conversions</h2>
+      <div class="tw"><table><tbody>
+        <tr><td class="m">1 cm = 0.01 m</td><td class="m">1 mm = 0.001 m</td></tr>
+        <tr><td class="m">1 g = 0.001 kg</td><td class="m">1 ms = 0.001 s</td></tr>
+        <tr><td class="m">1 Hz = 1/s</td><td class="m">1 N/m = 1 kg/s²</td></tr>
+        <tr><td class="m">180° = π rad</td><td class="m">1 rad ≈ 57.3° <span class="tag info">Extra</span></td></tr>
+      </tbody></table></div>
+      <div class="check"><h4>Calculator tip</h4>For y = r·cos(ω·t) your calculator must be in <b>RAD</b> mode. Test: cos(π) = −1.</div>
+    </section>
+  </div>
+  <nav class="pn" data-pn aria-label="Previous and next page"></nav>
+</section>
+
+<!-- ================= MISTAKES ================= -->
+<section class="view" id="view-mistakes" data-view="mistakes" aria-labelledby="h-mistakes" hidden>
+  <header class="phead"><div class="phead-in">
+    <p class="eyebrow">Reference · from your notes</p>
+    <h1 id="h-mistakes" tabindex="-1">Fix your notes</h1>
+    <p class="lead">Small slips in your notes, and the correct version to learn.</p>
+  </div></header>
+  <div class="pbody">
+    <section class="blk wide" aria-labelledby="mk1">
+      <h2 id="mk1">Corrections</h2>
+      <div class="fixes">
+        <div class="fix"><div class="row said"><span>Your notes said</span><span>k in rows 3 and 4 of the Measuring k table: <s>437.5</s> and <s>496.79</s> N/m</span></div>
+          <div class="row right"><span>Correct</span><span><b>471.6</b> N/m (24.525 / 0.052) and <b>512.5</b> N/m (34.335 / 0.067). Average ≈ 522 N/m.</span></div>
+          <div class="row why"><span>Why</span><span>A small typing slip: 2.5 · 9.1 / 0.052 = 437.5 and 3.5 · 9.51 / 0.067 = 496.79, so g was typed as 9.1 and 9.51 instead of 9.81. Your method was right (F = m·g, x = L − L<sub>0</sub> in metres, k = F/x). Tip: re-type the calculation once as a check. <a href="#hooke">Hooke page</a></span></div></div>
+        <div class="fix"><div class="row said"><span>Your notes said</span><span>Worksheet Q8: "bigger amplitude makes it slower"</span></div>
+          <div class="row right"><span>Correct</span><span>The wave speed does <b>not</b> depend on the amplitude.</span></div>
+          <div class="row why"><span>Why</span><span>1.66 s vs 1.76 s is only 0.1 s: stopwatch reaction time. Speed depends on the medium (tension). <a href="#waves">Waves page</a></span></div></div>
+        <div class="fix"><div class="row said"><span>Your notes said</span><span>Q3: "No, because the chain itself isn't getting longer."</span></div>
+          <div class="row right"><span>Correct</span><span>"No. Each bead only oscillates up and down around its rest position; only the oscillation (energy) travels to the right."</span></div>
+          <div class="row why"><span>Why</span><span>The point is that particles do not travel with the wave. Chain length has nothing to do with it.</span></div></div>
+        <div class="fix"><div class="row said"><span>Your notes said</span><span>Summary blank left empty</span></div>
+          <div class="row right"><span>Correct</span><span>The particles only <b>oscillate</b> around their rest position.</span></div>
+          <div class="row why"><span>Why</span><span>What travels is the oscillation (energy), not the particles.</span></div></div>
+        <div class="fix"><div class="row said"><span>Your notes said</span><span>Reflection: "entire string moves", "less amplitude"</span></div>
+          <div class="row right"><span>Correct</span><span>Fixed end: pulse comes back upside down. Loose end: pulse comes back upright.</span></div>
+          <div class="row why"><span>Why</span><span>That is the whole rule. A smaller returning pulse is just energy loss.</span></div></div>
+        <div class="fix"><div class="row said"><span>Your notes said</span><span><s>y = r·cos(t)</s></span></div>
+          <div class="row right"><span>Correct</span><span><b>y(t) = r·cos(ω·t)</b></span></div>
+          <div class="row why"><span>Why</span><span>The angle inside the cosine is ω·t. Without ω the period would always be 2π s. <a href="#describe">Describe page</a></span></div></div>
+        <div class="fix"><div class="row said"><span>Your notes said</span><span><s>"longitude wave"</s></span></div>
+          <div class="row right"><span>Correct</span><span><b>longitudinal</b> wave</span></div>
+          <div class="row why"><span>Why</span><span>"Longitude" is a geography word. Also: transverse (also called transversal) is fine.</span></div></div>
+        <div class="fix"><div class="row said"><span>Your notes said</span><span><s>"dampening"</s></span></div>
+          <div class="row right"><span>Correct</span><span><b>damping</b></span></div>
+          <div class="row why"><span>Why</span><span>The physics word is damping (both spellings are accepted in answers here). <a href="#damping">Damping page</a></span></div></div>
+        <div class="fix"><div class="row said"><span>Your notes said</span><span>"sin starts at 0, cos ¼ later"</span></div>
+          <div class="row right"><span>Correct</span><span>cos starts at the maximum r. sin starts at 0 and reaches its maximum a quarter period (T/4) later than cos.</span></div>
+          <div class="row why"><span>Why</span><span>Check the first value: at t = 0, cos gives r, sin gives 0. <a href="#describe">Describe page</a></span></div></div>
+        <div class="fix"><div class="row said"><span>Your notes said</span><span><s>"radiant"</s></span></div>
+          <div class="row right"><span>Correct</span><span><b>radians</b> (unit: rad)</span></div>
+          <div class="row why"><span>Why</span><span>Spelling. 360° = 2π rad.</span></div></div>
+        <div class="fix"><div class="row said"><span>Your notes said</span><span><s>f(x) = r × sin(ω×t)</s></span></div>
+          <div class="row right"><span>Correct</span><span><b>y(t) = r·sin(ω·t)</b></span></div>
+          <div class="row why"><span>Why</span><span>It is a function of time t, and it gives the elongation y. (And r·cos(ω·t) if the object starts at the maximum.)</span></div></div>
+        <div class="fix"><div class="row said"><span>Your notes said</span><span><s>Ocsillation</s>, <s>parralel</s>, <s>propogation</s></span></div>
+          <div class="row right"><span>Correct</span><span><b>oscillation</b>, <b>parallel</b>, <b>propagation</b></span></div>
+          <div class="row why"><span>Why</span><span>Spelling only. The ideas were fine.</span></div></div>
+      </div>
+    </section>
+
+    <section class="blk wide" aria-labelledby="mk2">
+      <h2 id="mk2">Top traps in tests</h2>
+      <ul class="trap-list">
+        <li><b>cm → m.</b> Convert before you calculate. 1.7 cm = 0.017 m, not 1.7 m.</li>
+        <li><b>RAD mode.</b> y = r·cos(ω·t) needs the calculator in RAD, not DEG.</li>
+        <li><b>Half period vs period.</b> Top → bottom is only <b>half</b> a period. T is there and back.</li>
+        <li><b>T vs f.</b> f = 1/T. If T = 0.82 s, then f = 1/0.82 = 1.22 Hz. Do not divide the wrong way round.</li>
+        <li><b>Forgetting 2π.</b> ω = 2π/T. Not 1/T, not π/T.</li>
+        <li><b>The minus sign in Hooke's law.</b> F = −k·x shows direction; for sizes use F = k·x.</li>
+        <li><b>Mass does not change a pendulum's period.</b> Only l and g do.</li>
+        <li><b>Amplitude does not change the wave speed or the period.</b> Frequency does not change the wave speed either. Tension does.</li>
+        <li><b>With damping the frequency stays the same.</b> Only the amplitude shrinks.</li>
+      </ul>
+    </section>
+  </div>
+  <nav class="pn" data-pn aria-label="Previous and next page"></nav>
+</section>
+
+</main>
+<footer class="foot"><p>Oscillations &amp; Waves Trainer, built from your class notes (1 Oct – mid Nov). If your teacher said something different, follow your teacher.</p></footer>
+</div>
+</div>
+
+<script src="questions.js"></script><script src="sims.js"></script><script src="app.js"></script>
+</body>
+</html>
