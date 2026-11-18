@@ -69,7 +69,7 @@ mc(1, `What is the unit of the spring constant k?`,
   `k = F / x, so the unit is newton per metre. N/m is also kg/s&sup2; (1 N = 1 kg&middot;m/s&sup2;, so 1 N/m = 1 kg/s&sup2;). N&middot;m would be a unit of energy, and N alone is only the force.`, 'i');
 
 tf(1, `The unit N/m can also be written as kg/s&sup2;.`, true,
-  `True. 1 N = 1 kg&middot;m/s&sup2;, so 1 N/m = 1 kg&middot;m/s&sup2; / m = 1 kg/s&sup2;. Your notes have this right.`, 'n');
+  `True. 1 N = 1 kg&middot;m/s&sup2;, so 1 N/m = 1 kg&middot;m/s&sup2; / m = 1 kg/s&sup2;. You can write the unit either way.`, 'n');
 
 mc(1, `A spring has a <b>large</b> spring constant k. What does that mean?`,
   `The spring is stiff: you need a large force for every metre of stretch.`,
@@ -108,14 +108,14 @@ num(2, `A spring (k = 300 N/m) is pulled with a force of <b>12 N</b>. How far do
   4, '12/300*100', `cm`, 0.02,
   W(`F = 12 N, k = 300 N/m`, `x = F / k`, `x = 12 N / 300 N/m = 0.040 m`, `x = 4.0 cm`) + `<br>Multiply by 100 to go from m to cm.`);
 
-num(2, `<b>Spot the mistake.</b> In your table, row 3: m = 2.5 kg, length L = 0.069 m, initial length L<sub>0</sub> = 0.017 m. You wrote k = 437.5 N/m. Calculate the correct k in N/m (g = 9.81 m/s&sup2;).`,
+num(2, `Row 3 of your table: m = 2.5 kg, length L = 0.069 m, initial length L<sub>0</sub> = 0.017 m. Calculate k in N/m (g = 9.81 m/s&sup2;).`,
   471.63461538461536, '2.5*9.81/(0.069-0.017)', `N/m`, 0.02,
-  W(`m = 2.5 kg, L = 0.069 m, L<sub>0</sub> = 0.017 m`, `x = L &minus; L<sub>0</sub>, F = m&middot;g, k = F / x`, `x = 0.069 m &minus; 0.017 m = 0.052 m; F = 2.5 kg &middot; 9.81 m/s&sup2; = 24.525 N; k = 24.525 N / 0.052 m`, `k &asymp; 471.6 N/m`) + `<br>Your 437.5 comes from 2.5 &middot; <b>9.1</b> / 0.052: the digits of g slipped (9.1 instead of 9.81). Easy to do. Also note that the extension is L &minus; L<sub>0</sub>, not L itself.`, 'nt');
+  W(`m = 2.5 kg, L = 0.069 m, L<sub>0</sub> = 0.017 m`, `x = L &minus; L<sub>0</sub>, F = m&middot;g, k = F / x`, `x = 0.069 m &minus; 0.017 m = 0.052 m; F = 2.5 kg &middot; 9.81 m/s&sup2; = 24.525 N; k = 24.525 N / 0.052 m`, `k &asymp; 471.6 N/m`) + `<br>Note that the extension is L &minus; L<sub>0</sub>, not L itself, and that g = 9.81 m/s&sup2; must be used with all its digits.`, 'n');
 
-mc(2, `<b>Spot the mistake.</b> Row 4 of your table: m = 3.5 kg, x = 0.067 m. You wrote k = 496.79 N/m. What is the correct value (g = 9.81 m/s&sup2;)?`,
+mc(2, `Row 4 of your table: m = 3.5 kg, extension x = 0.067 m. What is k (g = 9.81 m/s&sup2;)?`,
   `512.5 N/m`,
-  [`496.79 N/m (your value is correct)`, `5.12 N/m (x was used in cm)`, `0.0020 N/m (x divided by F)`],
-  `F = 3.5 &middot; 9.81 = 34.335 N, k = F/x = 34.335 / 0.067 = <b>512.5 N/m</b>. Your 496.79 comes from 3.5 &middot; <b>9.51</b> / 0.067: a small typing slip in g (9.51 instead of 9.81). 5.12 appears if you put x = 6.7 (cm) into the formula; 0.0020 appears if you divide the wrong way round (x / F).`, 'nt');
+  [`51.2 N/m (x taken as 0.67 m)`, `5.12 N/m (x was used in cm)`, `0.0020 N/m (x divided by F)`],
+  `F = 3.5 &middot; 9.81 = 34.335 N, k = F/x = 34.335 / 0.067 = <b>512.5 N/m</b>. 51.2 appears if you use x = 0.67 m; 5.12 appears if you put x = 6.7 (cm) into the formula; 0.0020 appears if you divide the wrong way round (x / F).`, 'n');
 
 mc(2, `The initial length of a spring is 1.7 cm. Hanging a mass makes it 4.7 cm long. What is the extension x in metres?`,
   `0.030 m`,
@@ -213,10 +213,10 @@ tf(1, `The sine and cosine oscillation have the same shape, but the sine reaches
 tf(1, `360&deg; corresponds to 2&pi; rad, and 180&deg; to &pi; rad.`, true,
   `True. rad = deg &middot; &pi;/180. 90&deg; = &pi;/2, 180&deg; = &pi;, 270&deg; = 3&pi;/2, 360&deg; = 2&pi;. One radian is about 57.3&deg;.`);
 
-mc(1, `<b>Spot the mistake.</b> Your first attempt at the oscillation formula was y(t) = r &middot; cos(t). What is missing?`,
+mc(1, `What is missing in the formula y(t) = r &middot; cos(t) for an oscillation?`,
   `The angular velocity: it must be y(t) = r &middot; cos(&omega; &middot; t).`,
   [`Nothing, the formula is complete.`, `The period: it must be y(t) = r &middot; cos(T).`, `The minus sign: y(t) = &minus;r &middot; cos(t).`],
-  `Without &omega; the formula would force every oscillation to have the same speed (&omega; = 1 rad/s). The factor &omega; &middot; t is the angle covered after time t and tells how fast the oscillation is.`, 'nti');
+  `Without &omega; the formula would force every oscillation to have the same speed (&omega; = 1 rad/s). The factor &omega; &middot; t is the angle covered after time t and tells how fast the oscillation is.`, 'ti');
 
 num(2, `A weight on a spring needs <b>T = 0.50 s</b> for one oscillation. Calculate the frequency f in Hz.`,
   2, '1/0.5', `Hz`, 0.02,
@@ -262,7 +262,7 @@ mc(2, `A weight passes through the rest position at t = 0, moving upwards. Which
   [`y = r &middot; cos(&omega; &middot; t)`, `y = &minus;r &middot; sin(&omega; &middot; t)`, `y = r &middot; cos(2&pi;)`],
   `sin(0) = 0 is the rest position, and the positive sine then rises towards +r. Cosine would put the object at its maximum at t = 0. (&minus;r&middot;sin would move downwards first.)`, 'i');
 
-mc(2, `<b>Spot the mistake.</b> You measure that the weight needs 0.4 s to go from the top to the bottom, and conclude T = 0.4 s. What is wrong?`,
+mc(2, `<b>Spot the mistake.</b> A student measures that the weight needs 0.4 s to go from the top to the bottom, and concludes T = 0.4 s. What is wrong?`,
   `Top to bottom is only half an oscillation, so T = 0.8 s.`,
   [`Nothing, T = 0.4 s is correct.`, `T = 0.2 s, because top to bottom is a quarter period.`, `T = 0.4 s is the frequency in Hz.`],
   `A full oscillation is top &rarr; bottom &rarr; <b>top</b>. One way is a half period, so T = 2 &middot; 0.4 s = 0.8 s. The same trap appears in your damping table: the turning points are half periods apart.`, 'nt');
@@ -301,7 +301,7 @@ open(3, `Why must the formula for the elongation contain &omega;? What would y(t
   `&omega;&middot;t is the angle covered after time t, and &omega; = 2&pi;/T sets how fast the oscillation runs. Without &omega; the formula always means &omega; = 1 rad/s, so every oscillation would have the same period of about 6.3 s, whatever the real oscillator does.`,
   [`&omega;&middot;t is the angle covered after time t`, `&omega; = 2&pi;/T sets the speed of the oscillation`, `r&middot;cos(t) means &omega; = 1 rad/s: one fixed period for every oscillator`], 'n');
 
-open(3, `Your notes say that sin or cos does matter. Explain how you decide which one to use, and how the two curves are related.`,
+open(3, `Does it matter whether you use sin or cos? Explain how you decide which one to use, and how the two curves are related.`,
   `Look at where the object is at t = 0: if it starts at the maximum use r&middot;cos(&omega;t) (cos(0) = 1); if it starts at the rest position use r&middot;sin(&omega;t) (sin(0) = 0). The curves have the same shape but are shifted by a quarter period T/4.`,
   [`Decide using the position at t = 0`, `cos starts at y = r, sin starts at y = 0`, `Same shape, shifted by T/4`], 'n');
 
@@ -664,10 +664,10 @@ multi(1, `Which of these are <b>transverse</b> waves?`,
   [`Sound in air`, `A slinky pushed and pulled along its length`],
   `In the transverse examples the oscillation (up/down) is perpendicular to the way the wave runs. Sound and the pushed slinky are longitudinal.`);
 
-mc(1, `<b>Spot the mistake.</b> A student writes &quot;sound is a longitude wave&quot;. What is the correct term?`,
-  `Longitudinal wave (longitude is a term from geography).`,
-  [`Longitude wave is fine.`, `Transverse wave.`, `Lengthwise wave, the same as transversal.`],
-  `The word is <b>longitudinal</b>. Sound is longitudinal because the particles oscillate parallel to the travel direction. (Transverse, also called transversal, is the other type.)`, 'nt');
+mc(1, `Another word for a <b>transverse</b> wave (used on your worksheet) is&hellip;`,
+  `transversal wave`,
+  [`longitudinal wave`, `compression wave`, `standing wave`],
+  `Transverse and transversal mean the same: the oscillation is perpendicular to the direction of travel. A longitudinal wave is the other type, with the oscillation parallel to the travel direction.`, 'n');
 
 mc(1, `The <b>wavelength &lambda;</b> is the distance between&hellip;`,
   `two neighbouring crests (or two neighbouring troughs).`,
@@ -742,22 +742,22 @@ mc(2, `Worksheet task B: f = 1, 2, 3 Hz gave &lambda; = 4.2, 2.1, 1.4 cm. What s
 mc(2, `Worksheet task C (stopwatch times for the pulse to cross the string): <table class="tbl"><tr><th>Setting</th><th>Time</th></tr><tr><td>Low tension (39 %)</td><td>2.71 s</td></tr><tr><td>High tension (80 %)</td><td>1.66 s</td></tr></table> What do you conclude?`,
   `Higher tension makes the pulse faster.`,
   [`Lower tension makes the pulse faster.`, `Tension has no effect on the speed.`, `The pulse is faster because its amplitude is larger.`],
-  `A shorter crossing time means a higher speed, and the only thing changed is the tension. So more tension gives a faster wave (your Q7 answer is right).`, 'ni');
+  `A shorter crossing time means a higher speed, and the only thing changed is the tension. So more tension gives a faster wave.`, 'ni');
 
-mc(2, `<b>Spot the mistake (worksheet Q8).</b> At high tension the pulse took 1.66 s. With a <b>bigger amplitude</b> it took 1.76 s. You wrote: &quot;a bigger amplitude makes it slower.&quot; What is the correct conclusion?`,
+mc(2, `Worksheet task C: at high tension the pulse took 1.66 s. With the same tension but a <b>bigger amplitude</b> it took 1.76 s. What is the correct conclusion?`,
   `The wave speed does not depend on the amplitude; the 0.1 s difference is stopwatch (reaction-time) error.`,
-  [`Your answer is right: bigger amplitude means slower.`, `A bigger amplitude makes it faster, but only by a little.`, `The speed depends on both tension and amplitude.`],
-  `The speed depends on the medium (the tension), NOT on amplitude or frequency. A difference of 0.1 s is of the order of the human reaction time when starting and stopping a stopwatch, so it is no real effect.`, 'nti');
+  [`A bigger amplitude makes it slower: 1.76 s is longer than 1.66 s.`, `A bigger amplitude makes it faster, but only by a little.`, `The speed depends on both tension and amplitude.`],
+  `The speed depends on the medium (the tension), NOT on amplitude or frequency. A difference of 0.1 s is of the order of the human reaction time when starting and stopping a stopwatch, so it is no real effect.`, 'ni');
 
-mc(2, `<b>Spot the mistake (worksheet Q3).</b> Which answer to &quot;Does the bead travel with the wave?&quot; is the best?`,
-  `No. Each bead only oscillates up and down around its rest position; only the oscillation (energy) moves to the right.`,
-  [`No, because the chain itself isn't getting longer.`, `Yes, because the wave moves to the right.`, `Yes, but slower than the wave.`],
-  `A good answer says what the beads <b>do</b> (oscillate around the rest position) and what travels (the oscillation). &quot;The chain isn't getting longer&quot; does not explain anything about the motion of the beads.`, 'nt');
+mc(2, `Worksheet task A: each bead moves up and down while the wave runs to the right. What type of wave is this, and why?`,
+  `Transverse: the bead oscillates perpendicular to the direction in which the wave travels.`,
+  [`Longitudinal: the beads oscillate, so the oscillation is along the wave.`, `Longitudinal: the wave travels horizontally.`, `Transverse: the beads travel to the right with the wave.`],
+  `Up/down (bead) is perpendicular to left/right (wave), so the wave is transverse. The beads do not travel with the wave; they only oscillate around their rest position, and only the oscillation (energy) moves on.`, 'n');
 
-mc(2, `<b>Spot the mistake (worksheet task D).</b> At a loose end the pulse came back upright. You explained this with &quot;less amplitude&quot;. What is the rule?`,
-  `A loose end reflects the pulse upright; a fixed end reflects it inverted. Smaller size is just energy loss.`,
-  [`A loose end reflects with a smaller amplitude, a fixed end with a bigger one.`, `A loose end reflects the pulse inverted.`, `The whole string moves, and that is the reason.`],
-  `The reflection rule is about <b>orientation</b>, not size: loose end = upright, fixed end = inverted. A smaller pulse after reflection comes from energy loss (damping).`, 'nt');
+mc(2, `Worksheet task D: a pulse is reflected at the end of a string. Which statement gives the rule?`,
+  `Fixed end: the pulse comes back inverted. Loose end: it comes back upright.`,
+  [`Fixed end: upright. Loose end: inverted.`, `Fixed end: smaller. Loose end: bigger.`, `Both ends: the pulse comes back inverted.`],
+  `The rule is about <b>orientation</b>, not size: fixed end = inverted, loose end = upright. If the returning pulse is smaller, that is energy loss (damping).`, 'n');
 
 mc(2, `Same string, same tension: you <b>double the frequency</b>. What happens?`,
   `The wavelength halves; the wave speed stays the same.`,
@@ -784,13 +784,13 @@ multi(3, `The stadium wave: people stand up and sit down, and the wave runs arou
   [`It is a longitudinal wave, because people stand along the stadium.`, `The people run around the stadium with the wave.`],
   `Each person oscillates around a rest position (up/down), perpendicular to the way the wave runs. Only the oscillation (the excitation) is passed on from neighbour to neighbour.`);
 
-open(3, `<b>Worksheet Q3.</b> Does a bead on the chain travel with the wave? Write a good answer.`,
+open(3, `<b>Worksheet Q3.</b> Does a bead on the chain travel with the wave? Give a full answer.`,
   `No. Each bead only oscillates up and down around its rest position. Only the oscillation (the energy) travels along to the right.`,
   [`Answer: no`, `Beads oscillate around the rest position`, `Only the oscillation / energy travels`], 'n');
 
-open(3, `<b>Worksheet Q8.</b> The pulse needed 1.66 s at high tension and 1.76 s at high tension with a bigger amplitude. Explain what this tells you about amplitude and wave speed.`,
+open(3, `<b>Worksheet task C.</b> The pulse needed 1.66 s at high tension, and 1.76 s at the same tension with a bigger amplitude. Explain what this tells you about amplitude and wave speed.`,
   `Nothing real: the wave speed does not depend on the amplitude. The 0.1 s difference is within stopwatch reaction-time error. Speed depends on the tension of the string.`,
-  [`Speed does not depend on amplitude`, `0.1 s difference = timing (reaction-time) error`, `Speed depends on the tension (the medium)`], 'nt');
+  [`Speed does not depend on amplitude`, `0.1 s difference = timing (reaction-time) error`, `Speed depends on the tension (the medium)`], 'n');
 
 open(3, `Explain the difference between a transverse and a longitudinal wave. Give one example of each.`,
   `In a transverse wave the particles oscillate perpendicular to the direction of travel (rope moved up and down, guitar string, stadium wave). In a longitudinal wave they oscillate parallel to it (sound in air with compressions and rarefactions, a slinky pushed and pulled).`,
@@ -1038,7 +1038,7 @@ fc('hooke', `F&ndash;x graph of a spring in the elastic region`, `Straight line 
 fc('hooke', `Force of a hanging mass`, `F = m &middot; g (weight), with g = 9.81 m/s&sup2;`);
 fc('hooke', `Extension x from lengths`, `x = L &minus; L<sub>0</sub> (new length minus original length), in metres`);
 fc('hooke', `Your data: k from m = 0.5 kg, x = 0.008 m`, `k = 0.5 &middot; 9.81 / 0.008 &asymp; 613 N/m`);
-fc('hooke', `Your data: the corrected k values (rows 3 and 4)`, `471.6 N/m and 512.5 N/m (not 437.5 and 496.79)`);
+fc('hooke', `Your data: k for rows 3 and 4 of the table`, `Row 3: 471.6 N/m. Row 4: 512.5 N/m. (Row 1: 613.1, row 2: 490.5 N/m.)`);
 fc('hooke', `Your data: why do the k values scatter?`, `Tiny extensions (8 mm): a 1 mm reading error changes k by more than 10 %. Use several masses, bigger x, average or graph slope.`);
 fc('hooke', `1 cm = ? m &nbsp;|&nbsp; 1 mm = ? m`, `1 cm = 0.01 m &nbsp;|&nbsp; 1 mm = 0.001 m &mdash; convert before you calculate!`);
 
@@ -1063,8 +1063,8 @@ fc('describe', `rad &rarr; deg`, `deg = rad &middot; 180 / &pi;`);
 fc('describe', `Calculator trap for y = r&middot;cos(&omega;t)`, `&omega;&middot;t is in radians: set the calculator to RAD, not DEG.`);
 fc('describe', `Unit circle link`, `A point moves on a circle (radius r) with constant &omega;. Its height y = r &middot; sin(&omega;t) plotted against t gives the sine curve.`);
 fc('describe', `SOH CAH TOA`, `sin = opposite / hypotenuse<br>cos = adjacent / hypotenuse<br>tan = opposite / adjacent`);
-fc('describe', `Common mistake: y = r&middot;cos(t)`, `&omega; is missing. Correct: y(t) = r &middot; cos(&omega; &middot; t).`);
-fc('describe', `Common mistake: top to bottom takes 0.4 s, so T = 0.4 s?`, `No: that is only half an oscillation. T = 0.8 s.`);
+fc('describe', `Why does y(t) need &omega;?`, `&omega;&middot;t is the angle covered after time t; without &omega; the speed of the oscillation is not set. y(t) = r &middot; cos(&omega; &middot; t).`);
+fc('describe', `Top to bottom takes 0.4 s. What is T?`, `T = 0.8 s: top to bottom is only half an oscillation.`);
 
 // ---- Damping
 fc('damping', `Damping`, `Friction (air resistance, friction in the spring) takes energy away, so the oscillation gradually dies out.`);
@@ -1105,7 +1105,7 @@ fc('resonance', `London Millennium Bridge: what happened and what was the fix?`,
 fc('waves', `Wave`, `An oscillation that spreads out in space: each particle is excited by its neighbour.`);
 fc('waves', `Do particles travel with the wave?`, `No. They only oscillate around their rest position; the oscillation (energy) travels.`);
 fc('waves', `Transverse (transversal) wave`, `Oscillation perpendicular to the direction of travel. E.g. rope up and down, guitar string, stadium wave.`);
-fc('waves', `Longitudinal wave`, `Oscillation parallel to the direction of travel. E.g. sound in air, slinky pushed and pulled. (Not &quot;longitude&quot;!)`);
+fc('waves', `Longitudinal wave`, `Oscillation parallel to the direction of travel. E.g. sound in air, slinky pushed and pulled.`);
 fc('waves', `Wavelength &lambda;`, `Distance between two neighbouring crests (or troughs, or compressions). Unit: m.`);
 fc('waves', `Crest / trough`, `Crest = highest point, trough = lowest point of a transverse wave.`);
 fc('waves', `Compression / rarefaction`, `In a longitudinal wave: particles close together / far apart.`);
@@ -1120,8 +1120,8 @@ fc('waves', `Reflection at a loose end`, `The pulse comes back upright (same way
 fc('waves', `Pulse returns smaller: why?`, `Energy loss (damping). It is not the reflection rule.`);
 fc('waves', `Your data: f = 1, 2, 3 Hz and &lambda; = 4.2, 2.1, 1.4 cm`, `&lambda; &middot; f = 4.2 cm/s every time = the wave speed.`);
 fc('waves', `Your data: f = 4 Hz, &lambda; = 0.5 m`, `c = 4 &middot; 0.5 = 2 m/s`);
-fc('waves', `Worksheet Q8: 1.66 s vs 1.76 s at different amplitude`, `Speed does not depend on amplitude; 0.1 s is stopwatch reaction-time error.`);
-fc('waves', `Worksheet Q3: does the bead travel with the wave?`, `No: it only oscillates up and down around its rest position; only the oscillation travels.`);
+fc('waves', `Worksheet Q8: does the amplitude change the wave speed?`, `No. 1.66 s vs 1.76 s is only stopwatch reaction-time error.`);
+fc('waves', `Worksheet Q3: does the bead travel with the wave?`, `No. It only oscillates up and down around its rest position; only the oscillation (energy) travels.`);
 
 fc("resonance", `Natural (or individual) frequency`, `Your teacher's wording: the frequency at which a system oscillates by itself (eigenfrequency).`);
 fc("resonance", `Potentially oscillating system`, `A system that can oscillate (swing, spring, bridge, glass): resonance can only happen with such a system.`);

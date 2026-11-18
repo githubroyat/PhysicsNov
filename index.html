@@ -472,14 +472,13 @@ legend{font-family:var(--f-display);font-size:1.12rem;padding:0;margin-bottom:8p
       <h2 id="hk4">Your experiment: measuring k (2 Oct)</h2>
       <p>You hung masses on a spring scale. Your box said F = m·a: for a hanging mass the acceleration is a = g, so the force is its weight <span class="f">F = m·g</span> with g = 9.81 m/s². The start length was L<sub>0</sub> = 1.7 cm = <b>0.017 m</b>, and the extension is <span class="f">x = L − L<sub>0</sub></span>. Always convert cm to m first.</p>
       <div class="tw"><table>
-        <thead><tr><th>m (kg)</th><th>L (m)</th><th>x = L − L<sub>0</sub> (m)</th><th>F = m·g (N)</th><th>k = F / x (N/m)</th><th>you wrote</th></tr></thead>
+        <thead><tr><th>m (kg)</th><th>L (m)</th><th>x = L − L<sub>0</sub> (m)</th><th>F = m·g (N)</th><th>k = F / x (N/m)</th></tr></thead>
         <tbody>
-          <tr><td class="m">0.5</td><td class="m">0.025</td><td class="m">0.008</td><td class="m">4.905</td><td class="m"><b>613.1</b></td><td class="m"><span class="good">613.125 ✓</span></td></tr>
-          <tr><td class="m">1.5</td><td class="m">0.047</td><td class="m">0.030</td><td class="m">14.715</td><td class="m"><b>490.5</b></td><td class="m"><span class="good">490.5 ✓</span></td></tr>
-          <tr><td class="m">2.5</td><td class="m">0.069</td><td class="m">0.052</td><td class="m">24.525</td><td class="m"><b>471.6</b></td><td class="m"><s>437.5</s></td></tr>
-          <tr><td class="m">3.5</td><td class="m">0.084</td><td class="m">0.067</td><td class="m">34.335</td><td class="m"><b>512.5</b></td><td class="m"><s>496.79</s></td></tr>
+          <tr><td class="m">0.5</td><td class="m">0.025</td><td class="m">0.008</td><td class="m">4.905</td><td class="m"><b>613.1</b></td></tr>
+          <tr><td class="m">1.5</td><td class="m">0.047</td><td class="m">0.030</td><td class="m">14.715</td><td class="m"><b>490.5</b></td></tr>
+          <tr><td class="m">2.5</td><td class="m">0.069</td><td class="m">0.052</td><td class="m">24.525</td><td class="m"><b>471.6</b></td></tr>
+          <tr><td class="m">3.5</td><td class="m">0.084</td><td class="m">0.067</td><td class="m">34.335</td><td class="m"><b>512.5</b></td></tr>
         </tbody></table></div>
-      <div class="check"><h4>Check your notes</h4>Rows 3 and 4 look like typing slips, and a small one. 2.5 · 9.1 / 0.052 = 437.5 and 3.5 · 9.51 / 0.067 = 496.79, so you typed g as <b>9.1</b> and <b>9.51</b> instead of <b>9.81</b>. With g = 9.81: 24.525 / 0.052 = <b>471.6</b> and 34.335 / 0.067 = <b>512.5</b>. Your method was right. Tip: re-type the calculation once as a check.</div>
       <p><b>Average</b> of the four correct values: (613.1 + 490.5 + 471.6 + 512.5) / 4 ≈ <b>522 N/m</b>. A best-fit line through the origin on an F–x graph gives a slope of about <b>497 N/m</b>, so about 500 N/m.</p>
       <h3>Why do the values scatter?</h3>
       <p>The extensions are tiny: the first one is only 8 mm. If you misread the scale by <b>just 1 mm</b>, the first k changes from 613 to <b>545 N/m</b> (x = 9 mm) or <b>701 N/m</b> (x = 7 mm). That is more than 10 %. Lesson: measure several masses, use bigger extensions, and average or take the slope of the graph.</p>
@@ -542,7 +541,6 @@ legend{font-family:var(--f-display);font-size:1.12rem;padding:0;margin-bottom:8p
         <dt>ω</dt><dd>angular velocity (rad/s)</dd>
         <dt>t</dt><dd>time elapsed (s)</dd>
       </dl>
-      <div class="check"><h4>Check your notes</h4>Your first attempt was <s>r·cos(t)</s>. It is missing ω. The full form is <b>r·cos(ω·t)</b>. The thing inside the cosine is an angle: ω·t.</div>
       <h3>sin or cos? It does matter</h3>
       <ul>
         <li><span class="f">y = r·sin(ω·t)</span> starts at y = 0 (the rest position) at t = 0.</li>
@@ -629,7 +627,6 @@ legend{font-family:var(--f-display);font-size:1.12rem;padding:0;margin-bottom:8p
         <li>The <b>amplitude goes down</b>.</li>
         <li>The <b>frequency (and the period) stays the same</b>. The oscillation just gets smaller.</li>
       </ul>
-      <div class="check"><h4>Check your notes</h4>The word is <b>damping</b>, not "dampening". Your answers are accepted either way here, but use "damping" in the test.</div>
       <p><span class="term">Shock absorbers</span> in a car are your example: they damp the bouncing of the car on its springs, so the car stops bouncing quickly. Other examples <span class="tag info">Extra</span>: a swing slowing down, a guitar string fading out, a door closer.</p>
     </section>
 
@@ -729,12 +726,12 @@ legend{font-family:var(--f-display);font-size:1.12rem;padding:0;margin-bottom:8p
         <div class="ex"><h4>Example A · 23 Oct</h4>
           <dl class="gfr"><dt>Given</dt><dd>l = 1 m, T ≈ 2.55 s (simulation)</dd>
             <dt>Formula</dt><dd>f = 1/T · ω = 2π·f · g = ω²·l</dd>
-            <dt>Result</dt><dd>f ≈ 0.392 Hz<br>ω ≈ 2.464 rad/s<br>g = 2.464² · 1 ≈ <b>6.07 m/s²</b> <span class="good">✓</span></dd></dl>
+            <dt>Result</dt><dd>f ≈ 0.392 Hz<br>ω ≈ 2.464 rad/s<br>g = 2.464² · 1 ≈ <b>6.07 m/s²</b></dd></dl>
           <p class="small muted"><span class="tag info">Extra</span> On Earth a 1 m pendulum has T ≈ 2.01 s. T = 2.55 s means weaker gravity.</p></div>
         <div class="ex"><h4>Example B · 5 Nov · "Planet X"</h4>
           <dl class="gfr"><dt>Given</dt><dd>l = 1 m, T = 1.69 s (simulation)</dd>
             <dt>Formula</dt><dd>g = (2π/T)² · l</dd>
-            <dt>Result</dt><dd>g = (2π / 1.69)² · 1 ≈ <b>13.82 m/s²</b> <span class="good">✓</span></dd></dl>
+            <dt>Result</dt><dd>g = (2π / 1.69)² · 1 ≈ <b>13.82 m/s²</b></dd></dl>
           <p class="small muted">You used l = 1, so the "× l" was invisible. The general formula needs it.</p></div>
       </div>
       <div class="note"><b>Measuring tip:</b> <span class="tag info">Extra</span> time <b>10 full swings</b> and divide by 10. This reduces the error from your reaction time.</div>
@@ -844,7 +841,7 @@ legend{font-family:var(--f-display);font-size:1.12rem;padding:0;margin-bottom:8p
           <p>The direction of oscillation is <b>parallel</b> to the direction the wave travels.</p>
           <ul><li>Sound in air (compressions and rarefactions <span class="tag info">Extra</span>).</li><li>A slinky pushed and pulled along its length. <span class="tag info">Extra</span></li><li>People in a queue being pushed.</li></ul></div>
       </div>
-      <div class="check"><h4>Check your notes</h4>You wrote <s>"longitude wave"</s>. The word is <b>longitudinal</b>. "Longitude" is the geography word (lines on a map). Water waves are a mix of both types, so do not use them as an example of either.</div>
+      <div class="note">Water waves are a mix of both types, so do not use them as an example of either.</div>
     </section>
 
     <section class="blk" aria-labelledby="wv3">
@@ -863,7 +860,7 @@ legend{font-family:var(--f-display);font-size:1.12rem;padding:0;margin-bottom:8p
       <div class="formula">c = f · λ <span>c = <span class="frac"><span>λ</span><span>T</span></span></span><small>c = wave speed (m/s) · f = frequency (Hz) · λ = wavelength (m) · T = period (s)</small></div>
       <p>In one period the wave moves on by one wavelength, so c = λ / T <span class="tag info">Extra</span>. Since f = 1/T, that is the same as c = f·λ.</p>
       <div class="ex"><h4>Worked example (your control question)</h4>
-        <dl class="gfr"><dt>Given</dt><dd>f = 4 Hz, λ = 0.5 m</dd><dt>Formula</dt><dd>c = f·λ</dd><dt>Result</dt><dd>c = 4 · 0.5 = <b>2 m/s</b> <span class="good">✓</span></dd></dl></div>
+        <dl class="gfr"><dt>Given</dt><dd>f = 4 Hz, λ = 0.5 m</dd><dt>Formula</dt><dd>c = f·λ</dd><dt>Result</dt><dd>c = 4 · 0.5 = <b>2 m/s</b></dd></dl></div>
       <h3>What does the speed depend on?</h3>
       <ul>
         <li><b>Yes:</b> the medium. For a string, the <span class="term">tension</span>: higher tension means faster.</li>
@@ -884,35 +881,35 @@ legend{font-family:var(--f-display);font-size:1.12rem;padding:0;margin-bottom:8p
     </section>
 
     <section class="blk wide" aria-labelledby="wv6">
-      <h2 id="wv6">Your worksheet, corrected ("Waves on a string")</h2>
+      <h2 id="wv6">Your worksheet: waves on a string</h2>
       <div class="two">
         <div class="card"><h3>Task A · bead and wave</h3>
           <ul>
-            <li>Bead moves vertically <span class="good">✓</span></li>
-            <li>Wave moves horizontally <span class="good">✓</span></li>
-            <li>Q4: transverse(al) <span class="good">✓</span></li>
+            <li>Bead moves vertically</li>
+            <li>Wave moves horizontally</li>
+            <li>Q4: transverse(al)</li>
           </ul>
-          <div class="check"><h4>Check your notes · Q3</h4>"Does the bead travel with the wave?" You wrote: <s>"No, because the chain itself isn't getting longer."</s> That is weak.<br>Better: <b>"No. Each bead only oscillates up and down around its rest position; only the oscillation (energy) travels to the right."</b></div></div>
+          <p><b>Q3</b> "Does the bead travel with the wave?" <b>No. Each bead only oscillates up and down around its rest position; only the oscillation (energy) travels to the right.</b></p></div>
         <div class="card"><h3>Task B · same tension</h3>
           <div class="tw"><table><thead><tr><th>f (Hz)</th><th>λ (cm)</th><th>λ·f (cm/s)</th></tr></thead><tbody>
             <tr><td class="m">1</td><td class="m">4.2</td><td class="m">4.2</td></tr><tr><td class="m">2</td><td class="m">2.1</td><td class="m">4.2</td></tr><tr><td class="m">3</td><td class="m">1.4</td><td class="m">4.2</td></tr></tbody></table></div>
-          <p><span class="good">✓</span> Bigger frequency, shorter wavelength. <span class="good">✓</span> λ·f stays 4.2 cm/s: that is the wave speed.</p></div>
+          <p>Bigger frequency, shorter wavelength. λ·f stays 4.2 cm/s: that is the wave speed.</p></div>
       </div>
       <div class="card"><h3>Task C · timing a pulse</h3>
         <div class="tw"><table><thead><tr><th>setting</th><th>time (s)</th></tr></thead><tbody>
           <tr><td>low tension (39 %)</td><td class="m">2.71</td></tr><tr><td>high tension (80 %)</td><td class="m">1.66</td></tr><tr><td>high tension + bigger amplitude</td><td class="m">1.76</td></tr></tbody></table></div>
-        <p><b>Q7</b> "Tension makes it faster" <span class="good">✓</span></p>
-        <div class="check"><h4>Check your notes · Q8 (important)</h4>You wrote: <s>"bigger amplitude makes it slower."</s> This is <b>wrong</b>. <b>The wave speed does not depend on the amplitude.</b> Your worksheet's own summary says so. The difference between 1.66 s and 1.76 s is only 0.1 s. That is stopwatch reaction-time error, not a real effect.</div></div>
+        <p><b>Q7</b> "Tension makes it faster"</p>
+        <p><b>Q8</b> The amplitude does not change the wave speed. The 0.1 s difference between 1.66 s and 1.76 s is stopwatch reaction-time error.</p></div>
       <div class="card"><h3>Task D · reflection</h3>
-        <ul><li>Fixed end: the pulse comes back <b>inverted</b> <span class="good">✓</span>.</li><li>Loose end: the pulse comes back <b>upright</b> <span class="good">✓</span>.</li></ul>
-        <div class="check"><h4>Check your notes</h4>Your extra remarks "the entire string moves" and "less amplitude" are not the rule. The rule is only: <b>fixed end → upside down, loose end → upright.</b></div></div>
+        <ul><li>Fixed end: the pulse comes back <b>inverted</b>.</li><li>Loose end: the pulse comes back <b>upright</b>.</li></ul>
+        <p>The rule: <b>fixed end → upside down, loose end → upright.</b></p></div>
       <div class="card"><h3>Summary and control questions</h3>
         <ul>
-          <li>The particles only <b>oscillate</b> around their rest position. <span class="bad">(The blank you left empty.)</span></li>
+          <li>The particles only <b>oscillate</b> around their rest position.</li>
           <li>λ = distance between two neighbouring <b>crests</b>.</li>
           <li>c = <b>f · λ</b>.</li>
           <li>The speed depends on the <b>tension</b> (the medium), <b>not</b> on frequency or amplitude.</li>
-          <li>Double f (same tension): λ halves, speed stays the same <span class="good">✓</span>. f = 4 Hz, λ = 0.5 m: c = 2 m/s <span class="good">✓</span>.</li>
+          <li>Double f (same tension): λ halves, speed stays the same. f = 4 Hz, λ = 0.5 m: c = 2 m/s.</li>
         </ul></div>
     </section>
 
@@ -1063,53 +1060,11 @@ legend{font-family:var(--f-display);font-size:1.12rem;padding:0;margin-bottom:8p
 <!-- ================= MISTAKES ================= -->
 <section class="view" id="view-mistakes" data-view="mistakes" aria-labelledby="h-mistakes" hidden>
   <header class="phead"><div class="phead-in">
-    <p class="eyebrow">Reference · from your notes</p>
-    <h1 id="h-mistakes" tabindex="-1">Fix your notes</h1>
-    <p class="lead">Small slips in your notes, and the correct version to learn.</p>
+    <p class="eyebrow">Reference</p>
+    <h1 id="h-mistakes" tabindex="-1">Common traps</h1>
+    <p class="lead">The easy-to-make errors that cost marks in tests, and how to avoid them.</p>
   </div></header>
   <div class="pbody">
-    <section class="blk wide" aria-labelledby="mk1">
-      <h2 id="mk1">Corrections</h2>
-      <div class="fixes">
-        <div class="fix"><div class="row said"><span>Your notes said</span><span>k in rows 3 and 4 of the Measuring k table: <s>437.5</s> and <s>496.79</s> N/m</span></div>
-          <div class="row right"><span>Correct</span><span><b>471.6</b> N/m (24.525 / 0.052) and <b>512.5</b> N/m (34.335 / 0.067). Average ≈ 522 N/m.</span></div>
-          <div class="row why"><span>Why</span><span>A small typing slip: 2.5 · 9.1 / 0.052 = 437.5 and 3.5 · 9.51 / 0.067 = 496.79, so g was typed as 9.1 and 9.51 instead of 9.81. Your method was right (F = m·g, x = L − L<sub>0</sub> in metres, k = F/x). Tip: re-type the calculation once as a check. <a href="#hooke">Hooke page</a></span></div></div>
-        <div class="fix"><div class="row said"><span>Your notes said</span><span>Worksheet Q8: "bigger amplitude makes it slower"</span></div>
-          <div class="row right"><span>Correct</span><span>The wave speed does <b>not</b> depend on the amplitude.</span></div>
-          <div class="row why"><span>Why</span><span>1.66 s vs 1.76 s is only 0.1 s: stopwatch reaction time. Speed depends on the medium (tension). <a href="#waves">Waves page</a></span></div></div>
-        <div class="fix"><div class="row said"><span>Your notes said</span><span>Q3: "No, because the chain itself isn't getting longer."</span></div>
-          <div class="row right"><span>Correct</span><span>"No. Each bead only oscillates up and down around its rest position; only the oscillation (energy) travels to the right."</span></div>
-          <div class="row why"><span>Why</span><span>The point is that particles do not travel with the wave. Chain length has nothing to do with it.</span></div></div>
-        <div class="fix"><div class="row said"><span>Your notes said</span><span>Summary blank left empty</span></div>
-          <div class="row right"><span>Correct</span><span>The particles only <b>oscillate</b> around their rest position.</span></div>
-          <div class="row why"><span>Why</span><span>What travels is the oscillation (energy), not the particles.</span></div></div>
-        <div class="fix"><div class="row said"><span>Your notes said</span><span>Reflection: "entire string moves", "less amplitude"</span></div>
-          <div class="row right"><span>Correct</span><span>Fixed end: pulse comes back upside down. Loose end: pulse comes back upright.</span></div>
-          <div class="row why"><span>Why</span><span>That is the whole rule. A smaller returning pulse is just energy loss.</span></div></div>
-        <div class="fix"><div class="row said"><span>Your notes said</span><span><s>y = r·cos(t)</s></span></div>
-          <div class="row right"><span>Correct</span><span><b>y(t) = r·cos(ω·t)</b></span></div>
-          <div class="row why"><span>Why</span><span>The angle inside the cosine is ω·t. Without ω the period would always be 2π s. <a href="#describe">Describe page</a></span></div></div>
-        <div class="fix"><div class="row said"><span>Your notes said</span><span><s>"longitude wave"</s></span></div>
-          <div class="row right"><span>Correct</span><span><b>longitudinal</b> wave</span></div>
-          <div class="row why"><span>Why</span><span>"Longitude" is a geography word. Also: transverse (also called transversal) is fine.</span></div></div>
-        <div class="fix"><div class="row said"><span>Your notes said</span><span><s>"dampening"</s></span></div>
-          <div class="row right"><span>Correct</span><span><b>damping</b></span></div>
-          <div class="row why"><span>Why</span><span>The physics word is damping (both spellings are accepted in answers here). <a href="#damping">Damping page</a></span></div></div>
-        <div class="fix"><div class="row said"><span>Your notes said</span><span>"sin starts at 0, cos ¼ later"</span></div>
-          <div class="row right"><span>Correct</span><span>cos starts at the maximum r. sin starts at 0 and reaches its maximum a quarter period (T/4) later than cos.</span></div>
-          <div class="row why"><span>Why</span><span>Check the first value: at t = 0, cos gives r, sin gives 0. <a href="#describe">Describe page</a></span></div></div>
-        <div class="fix"><div class="row said"><span>Your notes said</span><span><s>"radiant"</s></span></div>
-          <div class="row right"><span>Correct</span><span><b>radians</b> (unit: rad)</span></div>
-          <div class="row why"><span>Why</span><span>Spelling. 360° = 2π rad.</span></div></div>
-        <div class="fix"><div class="row said"><span>Your notes said</span><span><s>f(x) = r × sin(ω×t)</s></span></div>
-          <div class="row right"><span>Correct</span><span><b>y(t) = r·sin(ω·t)</b></span></div>
-          <div class="row why"><span>Why</span><span>It is a function of time t, and it gives the elongation y. (And r·cos(ω·t) if the object starts at the maximum.)</span></div></div>
-        <div class="fix"><div class="row said"><span>Your notes said</span><span><s>Ocsillation</s>, <s>parralel</s>, <s>propogation</s></span></div>
-          <div class="row right"><span>Correct</span><span><b>oscillation</b>, <b>parallel</b>, <b>propagation</b></span></div>
-          <div class="row why"><span>Why</span><span>Spelling only. The ideas were fine.</span></div></div>
-      </div>
-    </section>
-
     <section class="blk wide" aria-labelledby="mk2">
       <h2 id="mk2">Top traps in tests</h2>
       <ul class="trap-list">
@@ -1133,6 +1088,6 @@ legend{font-family:var(--f-display);font-size:1.12rem;padding:0;margin-bottom:8p
 </div>
 </div>
 
-<script src="questions.js?v=2"></script><script src="sims.js?v=2"></script><script src="app.js?v=2"></script>
+<script src="questions.js?v=3"></script><script src="sims.js?v=3"></script><script src="app.js?v=3"></script>
 </body>
 </html>

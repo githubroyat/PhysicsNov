@@ -377,7 +377,7 @@ const PAGES = [
   { v: 'cards', t: 'Flashcards', g: 'Practise', ic: 'M3 8h12v12H3zM8 4h12v12' },
   { v: 'mock', t: 'Mock test', g: 'Practise', ic: 'M12 4a8 8 0 1 0 .01 0zM12 8v4l3 2' },
   { v: 'formulas', t: 'Formula sheet', g: 'Reference', ic: 'M18 5H8l5 7-5 7h10' },
-  { v: 'mistakes', t: 'Fix your notes', g: 'Reference', ic: 'M12 3l10 18H2zM12 10v5M12 18v.5' }
+  { v: 'mistakes', t: 'Common traps', g: 'Reference', ic: 'M12 3l10 18H2zM12 10v5M12 18v.5' }
 ];
 const TOPIC_PAGES = ['hooke', 'describe', 'damping', 'pendulum', 'resonance', 'waves'];
 const icon = d => '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="' + d + '"/></svg>';
