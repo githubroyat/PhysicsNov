@@ -672,7 +672,7 @@ legend{font-family:var(--f-display);font-size:1.12rem;padding:0;margin-bottom:8p
         <div class="sim grid-paper ph" data-sim="oscillator" data-damping="4">Simulation loading…</div>
         <div class="try"><h4>Try this</h4><ol>
           <li>Press <b>Lap</b> at each top, near the start and again near the end. <span class="muted">You should notice: the time between tops stays the same while the tops get lower. Damping does not change the period.</span></li>
-          <li>Look at the <b>Damping</b> slider: notch 4 means ×0.80 per half-swing. Read the height of successive peaks and divide each by the one before. <span class="muted">You should notice: the factor is about the same every time (about 0.8). That is exponential decay.</span></li>
+          <li>Look at the <b>Damping</b> slider: notch 4 means ×0.80 per half-swing. Read the size of successive turning points (top, then bottom, then top: ignore the minus sign) and divide each by the one before. <span class="muted">You should notice: the factor is about the same every time (about 0.8). That is exponential decay. (Two tops in a row are a whole period apart, so their ratio is 0.8 · 0.8 = 0.64.)</span></li>
           <li>Move the <b>Damping</b> slider to 0 and then to 5. <span class="muted">You should notice: with 0 the amplitude does not shrink; with 5 it dies out fast. The period is the same in all cases.</span></li>
         </ol></div>
       </div>
@@ -1088,6 +1088,6 @@ legend{font-family:var(--f-display);font-size:1.12rem;padding:0;margin-bottom:8p
 </div>
 </div>
 
-<script src="questions.js?v=3"></script><script src="sims.js?v=3"></script><script src="app.js?v=3"></script>
+<script src="questions.js?v=4"></script><script src="sims.js?v=4"></script><script src="app.js?v=4"></script>
 </body>
 </html>

@@ -415,7 +415,7 @@ multi(2, `Which statements about a weakly damped oscillation are correct?`,
   [`The period gets longer.`, `The frequency gets smaller.`],
   `Damping acts on the amplitude (and energy). In class and in your data the period (about 0.82 s) and so the frequency stay the same.`);
 
-tf(2, `In a damped oscillation the curve keeps its cosine shape and the same &omega;; only its amplitude shrinks from swing to swing.`, true,
+tf(2, `With weak damping the curve keeps its cosine shape and the same &omega;; only its amplitude shrinks from swing to swing.`, true,
   `True. Damping acts on the amplitude r only; &omega; (and so T and f) stay the same. On the graph you see a cosine-shaped curve inside a shrinking curved envelope.`);
 
 num(3, `The amplitude starts at 40 cm and is multiplied by 0.8 each half-swing. After how many half-swings does it first fall <b>below 10 cm</b>? (Whole number.)`,
